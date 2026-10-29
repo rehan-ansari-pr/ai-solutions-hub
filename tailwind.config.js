@@ -4,39 +4,29 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        brand: {
-          dark: '#080A0F',
-          darker: '#040608',
-          surface: '#0F131D',
-          surfaceHover: '#161C2B',
-          border: '#1E2638',
-          borderLight: '#2D374D',
-          orange: '#FF5C00',
-          orangeGlow: '#FF7A29',
-          cyan: '#00D2FF',
-          purple: '#8B5CF6',
-          green: '#10B981',
-          crimson: '#E50200',
+        havas: {
+          red: '#E50200',
+          redHover: '#C70200',
+          redSoft: '#FBE3E3',
+          redSoftText: '#B80200',
+          black: '#0D0D0D',
+          dark: '#1F1F1F',
+          body: '#4B5563',
+          muted: '#8C8C8C',
+          border: '#E5E7EB',
+          borderDark: '#D1D5DB',
+          light: '#F8F9FA',
+          card: '#FFFFFF',
         }
       },
       fontFamily: {
-        sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
-        display: ['Outfit', 'Cabinet Grotesk', 'sans-serif'],
+        sans: ['Plus Jakarta Sans', 'Inter', 'Arial', 'sans-serif'],
+        display: ['Plus Jakarta Sans', 'Arial', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace'],
       },
-      boxShadow: {
-        'glow-orange': '0 0 25px -5px rgba(255, 92, 0, 0.25)',
-        'glow-cyan': '0 0 25px -5px rgba(0, 210, 255, 0.25)',
-        'glow-purple': '0 0 25px -5px rgba(139, 92, 246, 0.25)',
-        'glow-green': '0 0 25px -5px rgba(16, 185, 129, 0.25)',
-      },
-      animation: {
-        'pulse-subtle': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-      }
     },
   },
   plugins: [],

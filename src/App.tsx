@@ -8,11 +8,11 @@ import { SolutionModal } from './components/SolutionModal';
 import { SyncModal } from './components/SyncModal';
 import { UnlockModal } from './components/UnlockModal';
 import { Footer } from './components/Footer';
-import { Sparkles, Layers, SlidersHorizontal, AlertCircle } from 'lucide-react';
+import { AlertCircle } from 'lucide-react';
 
 export default function App() {
   const [solutions, setSolutions] = useState<AISolution[]>(() => {
-    const saved = localStorage.getItem('csa_solutions_catalog');
+    const saved = localStorage.getItem('csa_solutions_catalog_v2');
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
@@ -49,7 +49,7 @@ export default function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  // Save internalMode status
+  // Toggle internalMode status
   const handleToggleInternalMode = () => {
     if (internalMode) {
       setInternalMode(false);
@@ -75,7 +75,7 @@ export default function App() {
       } else {
         updated = [newSol, ...prev];
       }
-      localStorage.setItem('csa_solutions_catalog', JSON.stringify(updated));
+      localStorage.setItem('csa_solutions_catalog_v2', JSON.stringify(updated));
       return updated;
     });
   };
@@ -96,23 +96,25 @@ export default function App() {
         const q = searchQuery.toLowerCase();
         const matchTitle = item.title.toLowerCase().includes(q);
         const matchTagline = item.tagline.toLowerCase().includes(q);
+        const matchConcept = item.coreConcept ? item.coreConcept.toLowerCase().includes(q) : false;
         const matchProblem = item.problem.toLowerCase().includes(q);
         const matchSolution = item.solution.toLowerCase().includes(q);
         const matchTech = item.techStack.some(t => t.toLowerCase().includes(q));
+        const matchUseCases = item.useCases ? item.useCases.some(u => u.toLowerCase().includes(q)) : false;
         const matchPublicClient = item.clientContext.publicName.toLowerCase().includes(q);
         const matchInternalClient = item.clientContext.internalName.toLowerCase().includes(q);
         const matchIndustry = item.clientContext.industry.toLowerCase().includes(q);
 
-        return matchTitle || matchTagline || matchProblem || matchSolution || matchTech || matchPublicClient || matchInternalClient || matchIndustry;
+        return matchTitle || matchTagline || matchConcept || matchProblem || matchSolution || matchTech || matchUseCases || matchPublicClient || matchInternalClient || matchIndustry;
       }
       return true;
     });
   }, [solutions, selectedPillar, selectedMaturity, searchQuery]);
 
   return (
-    <div className="min-h-screen bg-[#080A0F] text-slate-100 flex flex-col font-sans selection:bg-brand-orange selection:text-white">
+    <div className="min-h-screen bg-[#F8F9FA] text-[#0D0D0D] flex flex-col font-sans selection:bg-[#E50200] selection:text-white">
       
-      {/* Persistent Navigation Header */}
+      {/* Navigation Header */}
       <Header
         internalMode={internalMode}
         onToggleInternalMode={handleToggleInternalMode}
@@ -132,8 +134,8 @@ export default function App() {
         filteredCount={filteredSolutions.length}
       />
 
-      {/* Main Catalog Grid Section */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1 w-full pb-16">
+      {/* Main Solution Showcase Grid (No Scorecards - Concept & Use Case Focused) */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1 w-full py-10">
         
         {filteredSolutions.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -147,15 +149,15 @@ export default function App() {
             ))}
           </div>
         ) : (
-          <div className="p-12 text-center rounded-3xl glass-panel border border-white/[0.08] max-w-lg mx-auto my-12">
-            <AlertCircle className="w-10 h-10 text-slate-500 mx-auto mb-3" />
-            <h3 className="text-lg font-bold text-white mb-1">No Solutions Found</h3>
-            <p className="text-xs text-slate-400 mb-4">
-              No AI platforms match your search term &quot;{searchQuery}&quot; in the selected filter.
+          <div className="p-12 text-center rounded-xl bg-white border border-havas-border max-w-lg mx-auto my-12 shadow-sm">
+            <AlertCircle className="w-10 h-10 text-slate-400 mx-auto mb-3" />
+            <h3 className="text-base font-extrabold text-havas-black mb-1">No Matching Solutions Found</h3>
+            <p className="text-xs text-slate-500 mb-4">
+              No AI platforms match &quot;{searchQuery}&quot; in the current filter.
             </p>
             <button
               onClick={() => { setSearchQuery(''); setSelectedPillar('all'); setSelectedMaturity('all'); }}
-              className="px-4 py-2 rounded-xl bg-white/[0.08] text-xs font-semibold text-white hover:bg-white/[0.15] transition-colors"
+              className="px-4 py-2 rounded-md bg-havas-black text-xs font-semibold text-white hover:bg-slate-800 transition-colors"
             >
               Reset Filters
             </button>
@@ -164,7 +166,7 @@ export default function App() {
 
       </main>
 
-      {/* Detail Slide-Out / Center Modal */}
+      {/* Deep-Dive Solution Modal */}
       <SolutionModal
         solution={selectedSolution}
         internalMode={internalMode}

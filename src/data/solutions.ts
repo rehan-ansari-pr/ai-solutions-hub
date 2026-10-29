@@ -4,12 +4,19 @@ export const INITIAL_SOLUTIONS: AISolution[] = [
   {
     id: 'artiscents-flywheel',
     title: 'Multi-Agent AI Marketing Flywheel',
-    tagline: '37 Cloud Run microservices & 21 autonomous AI agents powering real-time signal-to-delivery marketing with human confidence gates.',
+    tagline: '37 Cloud Run microservices & 21 autonomous AI agents powering signal-driven campaign delivery with human confidence gates.',
+    coreConcept: 'Signal-driven multi-agent orchestration mesh that replaces manual 4-week campaign coordination with real-time signal intake, strategic reasoning, synthetic persona pre-testing, and automated omni-channel dispatch.',
+    useCases: [
+      'Real-Time Signal-to-Campaign Activation: Ingests weather, competitor discount shifts, and inventory triggers to deploy contextual campaigns in <45 minutes.',
+      'Synthetic Consumer Persona Pre-Testing: 40+ simulated buyer twins stress-test messaging resonance, tone, and offers before spending ad budget.',
+      'Closed-Loop Creative Recalibration: Connects live delivery metrics back to BigQuery institutional memory to refine future agent prompt weights.',
+      'Human-in-the-Loop Confidence Routing: Autonomous delivery when agent confidence exceeds threshold; routes borderline assets to an operator gate.'
+    ],
     pillar: 'orchestration',
     maturity: 'Production',
     featured: true,
     clientContext: {
-      publicName: 'Direct-to-Consumer Luxury Fragrance & Multi-Tenant Retail',
+      publicName: 'Direct-to-Consumer Luxury Fragrance & Multi-Brand Portfolio',
       internalName: 'Artiscents / Multi-Tenant DTC Flywheel (with Kotak 811, Glanbia, Mazda adaptations)',
       industry: 'DTC Luxury & Enterprise Retail',
       region: 'India / APAC'
@@ -28,12 +35,6 @@ export const INITIAL_SOLUTIONS: AISolution[] = [
       ]
     },
     techStack: ['GCP Cloud Run', 'BigQuery', 'AlloyDB', 'Google ADK', 'Gemini 1.5 Pro', 'Imagen 3', 'Veo 3', 'Lyria 2', 'React 18', 'FastAPI', 'Terraform'],
-    metrics: [
-      { label: 'Time to Market', value: '< 45 mins', detail: 'Collapsed from 14 days manual cycle' },
-      { label: 'Microservices', value: '37 Services', detail: '14 core + 17 agents + 6 infra services' },
-      { label: 'Autonomous Agents', value: '21 Agents', detail: 'Collaborative multi-agent swarm' },
-      { label: 'Test Suite', value: '65 Passing', detail: 'Rigorous end-to-end integration tests' }
-    ],
     deliverables: [
       'GCP Infrastructure-as-Code (Terraform for Cloud Run, Pub/Sub, BigQuery, IAM in asia-south1)',
       'Provider Abstraction Layer (PAL) preventing direct LLM vendor lock-in',
@@ -52,6 +53,13 @@ export const INITIAL_SOLUTIONS: AISolution[] = [
     id: 'brand-mitra',
     title: 'Brand Mitra: Agentic Creative Compliance Engine',
     tagline: 'Dual-layer deterministic CV and multimodal agentic gate ensuring 100% brand playbook adherence with section-level remediation.',
+    coreConcept: 'A two-layer inspection engine combining deterministic computer vision algorithms for zero-token hard layout rules with multimodal Gemini Vision for tone and aesthetics, delivering clause-specific remediation advice.',
+    useCases: [
+      'Deterministic Pre-Flight Gate: Checks brand hex color tolerances, logo clear-space margins, and contrast ratios in milliseconds with zero LLM costs.',
+      'Multimodal Tone & Copy Verification: Inspects headline urgency, brand persona fit, and legal warranty claims against brand playbook clauses.',
+      'Actionable Clause-Level Remediation: Generates exact remediation steps tied to the brand book rather than providing unhelpful composite scores.',
+      'Competitor Benchmark Scraping: Ingests live competitor campaigns via Apify to evaluate visual differentiation across categories.'
+    ],
     pillar: 'creative',
     maturity: 'Client MVP',
     featured: true,
@@ -74,12 +82,6 @@ export const INITIAL_SOLUTIONS: AISolution[] = [
       ]
     },
     techStack: ['Python 3.12', 'FastAPI', 'Google ADK', 'Gemini 2.0 Flash', 'Docker', 'OpenCV', 'Pillow', 'SQLite', 'React'],
-    metrics: [
-      { label: 'Hard-Rule Accuracy', value: '100%', detail: 'Zero false approvals of invalid logos or hex codes' },
-      { label: 'Review Latency', value: '< 5 sec', detail: 'Instant automated pre-flight certification' },
-      { label: 'CTR Improvement', value: '+15%', detail: 'Boosted ad engagement from playbook-aligned creative' },
-      { label: 'Agency Productivity', value: '10x Faster', detail: 'Eliminated multi-day manual review cycles' }
-    ],
     deliverables: [
       'Containerized FastAPI microservice with interactive Swagger and visual inspection dashboard',
       'Dual-Layer Deterministic + LLM Architecture saving token costs on obvious failures',
@@ -98,6 +100,13 @@ export const INITIAL_SOLUTIONS: AISolution[] = [
     id: 'echo-mmm-studio',
     title: 'Echo: MMM Automation Studio on Google Meridian',
     tagline: 'End-to-end Bayesian Marketing Mix Modeling platform powered by Google Meridian, reducing econometric modeling cycles from 12 weeks to < 1 hour.',
+    coreConcept: 'An agentic econometrics studio that automates raw media profiling, prior elicitation, and Markov Chain Monte Carlo (MCMC) Bayesian regression on Google Meridian with an interactive human approval gate at every step.',
+    useCases: [
+      'Automated Data Profiling & Reversible Repairs: Ingests raw media files, identifies schema blockers, and performs non-destructive data repairs.',
+      'Multicollinearity & VIF Diagnostics: Evaluates Variance Inflation Factors and cross-channel correlation heatmaps to prevent fit instability.',
+      'Bayesian Prior Calibration: Elicits industry lift tests and historical performance to configure informative ROI priors and adstock decay knots.',
+      'Executive What-If Budget Optimizer: Simulates quarterly spend scenarios to calculate marginal ROAS curves and budget reallocation recommendations.'
+    ],
     pillar: 'intelligence',
     maturity: 'Production',
     featured: true,
@@ -121,12 +130,6 @@ export const INITIAL_SOLUTIONS: AISolution[] = [
       ]
     },
     techStack: ['Google Meridian 1.6.2', 'TensorFlow Probability', 'Python 3.11', 'FastAPI', 'React 18', 'TypeScript', 'Groq (Llama 3.3-70B)', 'Cloud Run'],
-    metrics: [
-      { label: 'Modeling Velocity', value: '< 60 mins', detail: 'Slashed from 12 weeks of data science work' },
-      { label: 'Instant Simulation', value: '~2 sec', detail: 'Fast fallback simulator when GPU unavailable' },
-      { label: 'Hosting Cost', value: '$0 Idle', detail: 'Scale-to-zero container deployment on Cloud Run' },
-      { label: 'ROI Optimization', value: '+12% ROAS', detail: 'Validated budget reallocation curve recommendations' }
-    ],
     deliverables: [
       'Interactive 10-Stage React 18 Dashboard with human approval gates between workflow stages',
       'FastAPI Backend orchestrating containerized Google Meridian MCMC runs on Cloud Run',
@@ -145,6 +148,13 @@ export const INITIAL_SOLUTIONS: AISolution[] = [
     id: '6thstreet-marketing-os',
     title: '6thStreet: GenAI Marketing OS & Full-Stack Measurement Audit',
     tagline: 'Remediated 210M fake conversions in GA4/AppsFlyer while deploying an autonomous competitor intelligence-to-campaign reactive engine.',
+    coreConcept: 'Dual-module platform combining full-funnel attribution audit (purging corrupted browsing conversions from Smart Bidding) with a real-time competitor scraper and reactive campaign generator.',
+    useCases: [
+      'Smart Bidding Pollution Cleanup: Stripped 210M micro-browsing interactions from primary conversion actions, stabilizing Google Ads automated bidding.',
+      'Real-Time Competitor Drop Scraping (Prism): Headless crawlers continuously monitor rival flash sales, discount depths, and push notifications.',
+      'Bilingual Counter-Campaign Generation (Flywheel): Synthesizes competitor promotions into on-brand Arabic and English reactive creatives in <4 hours.',
+      'MMP Cost Sync Remediation: Repaired broken ad partner cost reporting integrations to recover visibility into AED 1.13M of ad revenue.'
+    ],
     pillar: 'commerce',
     maturity: 'Client MVP',
     featured: true,
@@ -168,12 +178,6 @@ export const INITIAL_SOLUTIONS: AISolution[] = [
       ]
     },
     techStack: ['GA4 360', 'AppsFlyer API', 'BigQuery', 'Playwright', 'Claude 3.5 Sonnet', 'FastAPI', 'React 18', 'Cloud Run'],
-    metrics: [
-      { label: 'Fake Conversions Purged', value: '210M / mo', detail: 'Eliminated bidding algorithm pollution' },
-      { label: 'Unsynced Ad Spend', value: 'AED 1.13M', detail: 'Recovered visibility into RTB House & partner channels' },
-      { label: 'Reaction Velocity', value: '< 4 Hours', detail: 'Slashed from 2 weeks of agency deliberation' },
-      { label: 'Property Scale', value: '1.23M Users', detail: 'Audited across 638M monthly events' }
-    ],
     deliverables: [
       'Comprehensive Full-Funnel Attribution Audit Playbook fixing GA4 360 and AppsFlyer discrepancies',
       'Prism Headless Competitor Intelligence Scraper monitoring rival catalogs and promotions',
@@ -192,6 +196,13 @@ export const INITIAL_SOLUTIONS: AISolution[] = [
     id: 'cwh-sgtm-cdp',
     title: 'Chemist Warehouse: Server-Side Tracking & First-Party Identity Hub',
     tagline: 'High-availability Server-Side GTM cluster & The Trade Desk Realtime ID integration achieving 99.4% transaction parity under browser cookie deprecation.',
+    coreConcept: 'Enterprise server-side event pipeline routing web conversions through a first-party subdomain proxy, tokenizing Trade Desk First-Party Cookie IDs (TDID) into an enterprise CDP, and validating peak retail transactions.',
+    useCases: [
+      'Cookieless Conversion Tracking: Mitigates 7-day Safari ITP truncation and ad blockers via custom Cloudflare first-party proxies.',
+      'Trade Desk Realtime ID Streaming: Captures client-side first-party cookie IDs and injects them server-side into Meiro CDP for programmatic activation.',
+      'Black Friday Funnel Validation: 25 interactive diagnostic reports validating parity across add-to-cart, checkout, and purchase events.',
+      'Zero-Trust Enterprise Portal: Houses analytics audit reports behind Cloudflare Zero Trust OTP authentication restricted to client domains.'
+    ],
     pillar: 'measurement',
     maturity: 'Production',
     featured: true,
@@ -214,12 +225,6 @@ export const INITIAL_SOLUTIONS: AISolution[] = [
       ]
     },
     techStack: ['Server-Side GTM', 'Cloudflare Workers', 'Cloudflare Zero Trust', 'The Trade Desk UID/TDID', 'Google Analytics 4', 'BigQuery', 'Meiro CDP'],
-    metrics: [
-      { label: 'Reconciliation Parity', value: '98.2%–99.4%', detail: 'Client-side vs server-side transaction accuracy' },
-      { label: 'Diagnostic Reports', value: '25 Reports', detail: 'Automated UAT and migration validation dashboards' },
-      { label: 'Security Model', value: 'Zero Trust OTP', detail: 'Protected by Cloudflare Access enterprise domain gating' },
-      { label: 'Attribution Recovery', value: '+24% Lift', detail: 'Recovered previously blocked browser conversions' }
-    ],
     deliverables: [
       'Dual-Container GTM Architecture (Client-Side GTM-M86X7T3D + Server-Side GTM-5RJVJ89F)',
       'The Trade Desk Realtime ID First-Party Cookie tag integration for Meiro CDP resolution',
@@ -238,6 +243,13 @@ export const INITIAL_SOLUTIONS: AISolution[] = [
     id: 'nivasa-indic-engine',
     title: 'Nivāsa Finance: Indic Typography-Safe Generative Engine',
     tagline: 'Hybrid vernacular ad generator combining Sarvam-M copy, headless Chromium vector typography shaping, and locked compliance disclaimers.',
+    coreConcept: 'Decoupled hybrid rendering pipeline that separates vernacular copy synthesis (Sarvam-M) from programmatic vector typography (Chromium HarfBuzz) and diffusion background generation, guaranteeing 100% Indic script accuracy.',
+    useCases: [
+      'Zero-Corruption Vernacular Typography: Renders complex Kannada and South Indian conjuncts (matras/ligatures) without diffusion font artifacts.',
+      'Immutable Regulatory Disclaimers: Hardcodes mandatory RBI NBFC interest rate disclosure lines, completely overriding generative drift.',
+      'Batch Multi-Aspect Ratio Packaging: Simultaneously outputs native 1:1 Feed, 9:16 Story, 16:9 Display, and 4:5 Mobile Grid assets.',
+      'Conversational Voice Loan Agent: Demonstrates automated inbound telephone loan qualification in colloquial Kannada using Sarvam AI TTS and Vapi.'
+    ],
     pillar: 'creative',
     maturity: 'Client MVP',
     clientContext: {
@@ -259,12 +271,6 @@ export const INITIAL_SOLUTIONS: AISolution[] = [
       ]
     },
     techStack: ['Python 3.11', 'FastAPI', 'Playwright', 'HarfBuzz Vector Shaping', 'NVIDIA NIM (Sarvam-M, FLUX)', 'Sarvam AI Voice', 'Vapi'],
-    metrics: [
-      { label: 'Script Corruption', value: '0% Errors', detail: '100% Kannada conjunct and matra fidelity' },
-      { label: 'Regulatory Adherence', value: '100% Locked', detail: 'Immutable RBI NBFC mandatory disclosures' },
-      { label: 'Simultaneous Ratios', value: '4 Formats', detail: '1:1, 9:16, 16:9, and 4:5 produced per brief' },
-      { label: 'Voice AI Integration', value: 'Kannada Voice', detail: 'Pilot inbound telephone loan agent with Vapi & Sarvam TTS' }
-    ],
     deliverables: [
       'Hybrid Rendering Pipeline pairing generative diffusion backgrounds with vector-shaped typography',
       'Vernacular Font Shaping Engine guaranteed free of Indic ligature and conjunct distortions',
@@ -283,6 +289,13 @@ export const INITIAL_SOLUTIONS: AISolution[] = [
     id: 'tagpilot',
     title: 'TagPilot (Parallax): Multimodal AI Analytics Implementation & Governance',
     tagline: 'Multimodal Gemini Vision converting UI screen recordings into production-ready GA4/GTM measurement plans with one-click API deployment.',
+    coreConcept: 'Multimodal analytics platform analyzing UI navigation videos to extract user interaction hierarchies, compile schema-verified measurement dictionaries, and batch-deploy containers directly via Google Tag Manager APIs.',
+    useCases: [
+      'Screen Video to Measurement Dictionary: Upload an MP4 walkthrough of checkout flows; Gemini Vision automatically maps events, triggers, and parameters.',
+      'Automated GTM Container API Deployer: Creates tags, triggers, and custom JavaScript variables directly in target containers via OAuth2.',
+      'Stealth Production Tag Auditing: Headless Chrome scanner navigates client sites and intercepts live dataLayer pushes in < 30 seconds.',
+      'Compiled YAML Knowledge Base: Enforces naming conventions, PII prevention rules, and e-commerce tracking standards programmatically.'
+    ],
     pillar: 'orchestration',
     maturity: 'Production',
     clientContext: {
@@ -304,12 +317,6 @@ export const INITIAL_SOLUTIONS: AISolution[] = [
       ]
     },
     techStack: ['React 18', 'TypeScript', 'Tailwind CSS', 'Google Gemini Vision', 'Tauri (Rust)', 'Puppeteer Stealth', 'GTM API', 'GA4 Admin API', 'Cloud Run'],
-    metrics: [
-      { label: 'Implementation Velocity', value: '75% Faster', detail: 'From weeks of spreadsheet drafting to automated plan' },
-      { label: 'Container Deployment', value: '1-Click API', detail: 'Zero manual GTM tag and trigger creation' },
-      { label: 'Inspection Speed', value: '< 30 sec', detail: 'Live web page tag and dataLayer beacon audits' },
-      { label: 'App Delivery', value: 'Web & Desktop', detail: 'Responsive cloud web app + native Tauri desktop client' }
-    ],
     deliverables: [
       'Multimodal Video-to-Measurement Plan Generator converting MP4 walkthroughs into GA4 event plans',
       'Compiled YAML Knowledge Base engine evaluating container hygiene against enterprise standards',
@@ -328,6 +335,13 @@ export const INITIAL_SOLUTIONS: AISolution[] = [
     id: 'appsflyer-audit',
     title: 'AppsFlyer Autonomous Attribution Fraud & Health Auditor',
     tagline: 'Zero-token headless browser engine auditing MMP accounts for attribution fraud, broken cost syncs, and Protect360 gaps with zero API keys.',
+    coreConcept: 'Zero-API-key autonomous agent skill that logs into MMP dashboards via headless browser with OS Keychain-secured credentials, extracting configurations and evaluating deterministic fraud rules.',
+    useCases: [
+      'Admin-Free Forensic Account Discovery: Discovers reachable accounts and app bundles using standard marketing team login credentials.',
+      'Attribution Fraud Vector Audit (AF-1.1): Evaluates active Protect360 licenses, click-to-install-time (CTIT) distributions, and device clustering.',
+      'Partner Cost Sync Verification (AF-2.1): Identifies active ad networks that have stopped syncing spend data into MMP reporting.',
+      'Automated Audit Memo Generation: Compiles executive-ready Markdown and HTML diagnostic reports outlining wasted spend and misconfigurations.'
+    ],
     pillar: 'measurement',
     maturity: 'Production',
     clientContext: {
@@ -349,12 +363,6 @@ export const INITIAL_SOLUTIONS: AISolution[] = [
       ]
     },
     techStack: ['Node.js 20+', 'Puppeteer', 'Chrome DevTools Protocol', 'macOS Keychain API', 'YAML Rules Engine', 'Antigravity Skill Protocol'],
-    metrics: [
-      { label: 'API Keys Required', value: 'Zero Tokens', detail: 'Runs completely on standard dashboard login' },
-      { label: 'Unmeasured Revenue Found', value: 'AED 1.13M', detail: 'Identified on single partner with broken cost sync' },
-      { label: 'Audit Execution Time', value: '< 90 sec', detail: 'Complete multi-account forensic sweep' },
-      { label: 'Security Model', value: 'Keychain Backed', detail: 'Zero plaintext passwords in scripts or shell history' }
-    ],
     deliverables: [
       'Self-contained Node.js CLI tool with interactive secure credential onboarding',
       'Antigravity Agent Skill enabling coding agents to trigger mobile attribution audits autonomously',
@@ -373,6 +381,13 @@ export const INITIAL_SOLUTIONS: AISolution[] = [
     id: 'kfc-genai-optimization',
     title: 'KFC: Multi-Agentic GenAI Campaign Optimization Engine',
     tagline: 'BigQuery marketing data lake paired with LangGraph multi-agent insighting engine delivering +18% retention lift and +20% ROAS improvement.',
+    coreConcept: 'Native BigQuery marketing data platform orchestrating a LangGraph multi-agent swarm that converts natural language business queries into optimized SQL and prescribes daily budget shifts.',
+    useCases: [
+      'Natural Language Text-to-Query: Marketing teams interrogate store-level campaign data in conversational English with zero SQL barrier.',
+      'Autonomous Zone Anomaly Scanner: Continuously monitors store cluster CPA and order volumes to detect underperforming delivery zones.',
+      'Offer Responsiveness Dynamic Triggers: Recommends budget reallocations based on historical customer coupon elasticity and retention trends.',
+      'Daily Media Desk Briefings: Automatically synthesizes morning campaign optimization recommendations before store trading opens.'
+    ],
     pillar: 'intelligence',
     maturity: 'Production',
     featured: true,
@@ -395,12 +410,6 @@ export const INITIAL_SOLUTIONS: AISolution[] = [
       ]
     },
     techStack: ['LangGraph', 'Google BigQuery', 'Gemini 1.5 Pro', 'Python', 'Streamlit', 'GCP Cloud Run', 'SQLGlot'],
-    metrics: [
-      { label: 'Retention Lift', value: '+18%', detail: 'Improvement in repeat order frequency' },
-      { label: 'ROAS Lift', value: '+20%', detail: 'Across acquisition and retention campaigns' },
-      { label: 'Manual Reporting', value: '-75%', detail: 'Eliminated daily spreadsheet consolidation' },
-      { label: 'Active Campaigns', value: '100+ Concurrently', detail: 'Monitored across delivery and owned channels' }
-    ],
     deliverables: [
       'BigQuery Marketing Data Lake unifying POS, Delivery Aggregator, and Paid Media APIs',
       'LangGraph Multi-Agent Orchestrator with schema-aware Text-to-SQL capabilities',
@@ -419,6 +428,13 @@ export const INITIAL_SOLUTIONS: AISolution[] = [
     id: 'indusind-video-vertex',
     title: 'IndusInd Bank: Dynamic Multi-Format Video Adaptation',
     tagline: 'Proprietary AI video adaptation pipeline on Vertex AI converting master TVCs into cohort-specific short-form variants within minutes.',
+    coreConcept: 'Automated video intelligence pipeline using computer vision to isolate high-energy scene hooks from master shoots and rendering platform-fit short-form assets with neural voiceovers.',
+    useCases: [
+      'Visual Hook Classification: Vision models identify high-recall moments, product visuals, and key faces from master commercials.',
+      'Cohort-Tailored Script Synthesis: Generates 6s bumper and 15s short scripts customized for salaried professionals, HNIs, and SMEs.',
+      'Aspect Ratio Smart Reframing: Centers subjects dynamically across native 9:16 vertical (Reels/Shorts), 1:1 square, and 16:9 display.',
+      'Statutory Banking Disclosures: Embeds mandatory RBI disclosure frames programmatically into concluding video seconds.'
+    ],
     pillar: 'creative',
     maturity: 'Production',
     featured: true,
@@ -441,12 +457,6 @@ export const INITIAL_SOLUTIONS: AISolution[] = [
       ]
     },
     techStack: ['Google Cloud Vertex AI', 'Gemini Vision', 'Google Cloud TTS', 'FFmpeg', 'Python', 'Cloud Storage', 'Cloud Run'],
-    metrics: [
-      { label: 'VTR & Engagement', value: '+42%', detail: 'View-Through Rate improvement on YouTube' },
-      { label: 'ROAS Lift', value: '+15%', detail: 'Higher recall on Demand Gen campaigns' },
-      { label: 'Turnaround Time', value: 'Minutes', detail: 'Down from 3 weeks of agency editing' },
-      { label: 'Format Variants', value: '3 Ratios', detail: 'Native 9:16, 1:1, and 16:9 exports' }
-    ],
     deliverables: [
       'Automated Video Re-framing Engine with intelligent facial and product centering',
       'Demographic Script Adapter creating personalized value props for salaried, HNI, and SME cohorts',
@@ -465,6 +475,13 @@ export const INITIAL_SOLUTIONS: AISolution[] = [
     id: 'ds-mediaflow',
     title: 'DS Group: Mediaflow Multi-Agent Planning Pipeline',
     tagline: 'Production-deployed 3-agent AI pipeline automating media plan ingestion, schema validation, and cross-channel intelligence.',
+    coreConcept: 'A three-tier agentic pipeline that normalizes inconsistent media agency spreadsheets, enforces row-by-row rate card rules, and auto-generates executive TV and digital media briefings.',
+    useCases: [
+      'AI Column & Schema Mapping (Agent 1): Maps arbitrary agency column naming conventions to standard enterprise schemas with confidence scoring.',
+      'Row-by-Row Quality Validation (Agent 2): Validates dayparts, rate cards, and channel allocations, rejecting invalid spreadsheet rows.',
+      'Spend & Spot Intelligence Synthesis (Agent 3): Automatically compiles spend shares, Free Commercial Time (FCT), and spot distribution summaries.',
+      'Cross-Agency Approval Portal: Central interface for brand managers to review, annotate, and approve multi-brand agency media plans.'
+    ],
     pillar: 'orchestration',
     maturity: 'Production',
     featured: true,
@@ -487,12 +504,6 @@ export const INITIAL_SOLUTIONS: AISolution[] = [
       ]
     },
     techStack: ['React', 'Python', 'Google Cloud Run', 'Cloud SQL / Firestore', 'Firebase Auth', 'Vertex AI', 'FastAPI'],
-    metrics: [
-      { label: 'Manual Effort', value: '-100%', detail: 'Zero manual template data entry' },
-      { label: 'Schema Errors', value: '0 Leaks', detail: '100% required field validation gating' },
-      { label: 'Approval Speed', value: '5x Faster', detail: 'Instant brief and spot distribution generation' },
-      { label: 'Agency Network', value: 'Multi-Agency', detail: 'Standardized across all partner agencies' }
-    ],
     deliverables: [
       'Self-Service Agency Portal with instant schema feedback and error highlighting',
       'Automated Field Mapping Agent matching messy headers with >98% accuracy',
@@ -511,6 +522,13 @@ export const INITIAL_SOLUTIONS: AISolution[] = [
     id: 'agentic-commerce-ds',
     title: 'Agentic Commerce & Generative Engine Optimization (GEO)',
     tagline: 'Model Context Protocol (MCP) servers, JSON-LD schemas, and LLM discovery manifests preparing brands for autonomous AI shopping agents.',
+    coreConcept: 'Agentic commerce architecture that exposes live brand catalog and inventory via Model Context Protocol (MCP) endpoints and Answer Engine Optimization (AEO) to make products purchasable inside AI assistants.',
+    useCases: [
+      'Hosted Brand MCP Tool Servers: Exposes structured catalog tool calls directly to ChatGPT, Claude, and Gemini shopping agents.',
+      'Semantic Machine Discovery (llm.txt): Deploys domain-root semantic manifests and Schema.org JSON-LD to guide crawler indexing.',
+      'Instant Google Indexing API Automation: Triggers immediate indexing of newly launched SKUs into Gemini Overviews in < 2 hours.',
+      'Conversational Checkout & Reordering: Chatbot on WhatsApp and brand websites answering ingredient queries and managing subscriptions.'
+    ],
     pillar: 'commerce',
     maturity: 'Client MVP',
     clientContext: {
@@ -532,12 +550,6 @@ export const INITIAL_SOLUTIONS: AISolution[] = [
       ]
     },
     techStack: ['Model Context Protocol (MCP)', 'Node.js', 'TypeScript', 'Google Indexing API', 'BigQuery', 'JSON-LD', 'Cloud Run'],
-    metrics: [
-      { label: 'AI Citations', value: '46x Growth', detail: 'Citation rate in Perplexity & ChatGPT responses' },
-      { label: 'Index Latency', value: '< 2 Hours', detail: 'From launch to Google AI Overview eligibility' },
-      { label: 'Discovery Coverage', value: '100% SKUs', detail: 'Mouth fresheners, confectionery & spices' },
-      { label: 'Agent Commerce', value: 'MCP Enabled', detail: 'Direct purchase eligibility via AI tool calls' }
-    ],
     deliverables: [
       'Hosted Brand MCP Servers enabling Claude and ChatGPT to query product availability',
       'Standardized `llm.txt` and Schema.org JSON-LD implementation across portfolio domains',
@@ -556,6 +568,13 @@ export const INITIAL_SOLUTIONS: AISolution[] = [
     id: 'reverse-etl-dpdpa',
     title: 'Privacy-Safe Reverse ETL & DPDPA Consent Sync Framework',
     tagline: 'Composable CDP (RudderStack + Multiwoven) audience sync engine with immutable BigQuery consent ledger and automated right-to-erasure.',
+    coreConcept: 'Warehouse-native Composable CDP and Reverse ETL framework that enforces statutory consent validation and automated cryptographic erasure across ad platforms under India’s DPDPA.',
+    useCases: [
+      'Statutory Consent-Gated Activation: Filters warehouse golden records against enterprise consent management platforms before audience dispatch.',
+      'Google Ads Customer Match (API v18): Automates offline user data job operations for Customer Match user lists via OAuth2 refresh tokens.',
+      'Client-Side SHA-256 Hashing: Enforces E.164 phone normalization and lowercased email hashing to prevent match-rate drops on Meta CAPI.',
+      'Automated Right-to-Erasure Execution: Propagates opt-outs and erasure requests across ad destinations within 24 hours with an audit ledger.'
+    ],
     pillar: 'measurement',
     maturity: 'Production',
     clientContext: {
@@ -578,12 +597,6 @@ export const INITIAL_SOLUTIONS: AISolution[] = [
       ]
     },
     techStack: ['Python', 'Ruby', 'Google Ads API v18', 'Meta Conversions API', 'BigQuery', 'RudderStack', 'Multiwoven', 'Cloud Run'],
-    metrics: [
-      { label: 'DPDPA Compliance', value: '100% Governed', detail: 'Strict consent verification prior to audience dispatch' },
-      { label: 'Sync Discrepancy', value: '0 Mismatches', detail: 'Verified audience parity across ad platforms' },
-      { label: 'Erasure Latency', value: '< 24 Hours', detail: 'Automated propagation of right-to-be-forgotten requests' },
-      { label: 'Supported Platforms', value: 'Meta, Google, CRM', detail: 'Direct offline job and conversions API connectors' }
-    ],
     deliverables: [
       'Production-Ready Reverse ETL Connector Framework with Google Ads Customer Match support',
       'Automated PII Sanitization & SHA-256 Hashing Utility adhering to ad platform specifications',
@@ -602,6 +615,13 @@ export const INITIAL_SOLUTIONS: AISolution[] = [
     id: 'abm-magic-rockwell',
     title: 'Rockwell Automation: Closed-Loop B2B Demand Engine',
     tagline: 'Dynamic ICP scoring and LinkedIn Matched Audiences pipeline using Cohen’s d effect-size analysis to continuously retrain account targeting.',
+    coreConcept: 'A closed-loop B2B demand generation engine connecting CRM seed accounts to live LinkedIn Matched Audiences and statistically retraining ICP scoring weights based on Cohen’s d effect sizes.',
+    useCases: [
+      'Third-Party Firmographic Enrichment: Enriches target enterprise accounts against a 50M+ company database for tech stack, headcount, and revenue.',
+      'Multi-Dimensional ICP Scoring: Evaluates buying readiness across industrial automation, life sciences, and CPG segments.',
+      'Automated LinkedIn Matched Audience Sync: Directly syncs tiered account segments into LinkedIn campaign managers.',
+      'Statistical Retraining Loop (Cohen’s d): Evaluates which firmographics generate significant engagement lift to retrain ICP weights weekly.'
+    ],
     pillar: 'intelligence',
     maturity: 'Production',
     clientContext: {
@@ -623,12 +643,6 @@ export const INITIAL_SOLUTIONS: AISolution[] = [
       ]
     },
     techStack: ['Python 3.11', 'FastAPI', 'LinkedIn Marketing API', 'PostgreSQL', 'Scikit-Learn', 'React', 'Tailwind CSS'],
-    metrics: [
-      { label: 'Targeting Lift', value: '+34% CTR', detail: 'Lift in LinkedIn ad engagement on retrained ICPs' },
-      { label: 'Test Suite', value: '65 Passing', detail: 'Comprehensive unit tests validating statistical logic' },
-      { label: 'Enrichment Scale', value: '50M+ Profiles', detail: 'Comprehensive global enterprise firmographics' },
-      { label: 'Feedback Loop', value: 'Continuous', detail: 'Weekly statistical recalibration of scoring weights' }
-    ],
     deliverables: [
       'Closed-Loop Demand Pipeline connecting CRM seed accounts to live LinkedIn ad targeting',
       'Dynamic ICP Scoring Model retrained on statistical engagement lift (Cohen’s d)',
@@ -641,51 +655,6 @@ export const INITIAL_SOLUTIONS: AISolution[] = [
       architectureType: 'FastAPI Backend + Closed-Loop LinkedIn Activation Engine',
       keyAgents: ['FirmographicEnricher', 'ICPWeightOptimizer', 'LinkedInAudienceSynchronizer'],
       compliance: 'Full GDPR and B2B privacy compliance; enterprise CRM security boundaries'
-    }
-  },
-  {
-    id: 'creative-film-studio',
-    title: 'Creative Film Studio: Self-Hosted Multimodal Production Engine',
-    tagline: 'Self-hosted, unrestricted generative production studio supporting 400+ diffusion models and high-throughput video interpolation.',
-    pillar: 'creative',
-    maturity: 'Production',
-    clientContext: {
-      publicName: 'Creative Video Production & Content Studios',
-      internalName: 'Open Generative AI / Creative Film Studio (MuAPI Engine)',
-      industry: 'Entertainment, Advertising & Generative Media',
-      region: 'Global'
-    },
-    problem: 'Commercial generative AI platforms restrict studios with vendor lock-in, recurring per-seat subscriptions, single-model ecosystems, and arbitrary content censorship, preventing production teams from building unified automated video pipelines.',
-    solution: 'Deployed a self-hosted generative production studio supporting over 400 state-of-the-art open-source and commercial diffusion models. Features the "Nano Banana Pro" image creation studio, canvas history, and the "Cinema" video pipeline supporting frame interpolation, camera motion controls, and aspect ratio adaptation via the MuAPI engine.',
-    architecture: {
-      summary: 'MuAPI High-Throughput Inference Engine → Multi-Studio Interface → Canvas History → Video Frame Interpolator.',
-      nodes: [
-        { step: '01', name: 'MuAPI Model Router', description: 'Routes generative requests across 400+ diffusion checkpoints and vision models', tech: 'MuAPI Router · Docker' },
-        { step: '02', name: 'Nano Banana Pro Canvas', description: 'Real-time prompt engineering, image-to-image variations, and layer compositing canvas', tech: 'React · Tailwind CSS v4' },
-        { step: '03', name: 'Cinema Video Synthesizer', description: 'High-fidelity video generation supporting camera pans, zooms, and cinematic motion', tech: 'Diffusion Video · WebGL' },
-        { step: '04', name: 'Frame Interpolation & Upscale', description: 'Smooths framerate transitions and upscales resolution to 4K delivery standards', tech: 'FFmpeg · RIFE · Real-ESRGAN' },
-        { step: '05', name: 'Asset Management Portal', description: 'Organizes shot lists, prompt recipes, and seeds for collaborative creative teams', tech: 'Next.js · Vite' }
-      ]
-    },
-    techStack: ['Vite', 'Next.js', 'Tailwind CSS v4', 'MuAPI Engine', 'FFmpeg', 'Docker', 'WebGL'],
-    metrics: [
-      { label: 'Supported Models', value: '400+ Models', detail: 'FLUX, Stable Diffusion, SDXL, Midjourney-style LoRAs' },
-      { label: 'Resolution', value: 'Up to 4K', detail: 'Automated super-resolution upscaling' },
-      { label: 'Subscription Cost', value: '$0 Platform Fee', detail: 'Self-hosted infrastructure eliminating recurring seats' },
-      { label: 'Video Pacing', value: '60 FPS', detail: 'High-framerate neural frame interpolation' }
-    ],
-    deliverables: [
-      'Self-Hosted Multi-Studio Web Interface supporting image, video, and audio synthesis',
-      'Cinema Camera Motion Controller generating cinematic panning and tracking shots',
-      'High-Throughput Model Router balancing load across private GPU clusters and cloud APIs',
-      'Interactive Canvas Workbench with full history rollback and layer blending'
-    ],
-    internalDeepDive: {
-      repoName: 'Creative Film Studio',
-      repoPath: '~/Documents/Projects/Creative Film Studio',
-      architectureType: 'Next.js + Vite + MuAPI Inference Engine',
-      keyAgents: ['ModelInferenceRouter', 'CameraMotionSynthesizer', 'FrameInterpolator'],
-      compliance: 'Private enterprise hosting; zero training data sharing with commercial vendors'
     }
   }
 ];

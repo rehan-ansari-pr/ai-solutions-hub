@@ -4,80 +4,44 @@
 
 @layer base {
   body {
-    @apply bg-[#080A0F] text-slate-100 font-sans antialiased;
-    background-image: 
-      radial-gradient(circle at 15% 15%, rgba(255, 92, 0, 0.05) 0%, transparent 40%),
-      radial-gradient(circle at 85% 25%, rgba(0, 210, 255, 0.04) 0%, transparent 45%),
-      radial-gradient(circle at 50% 80%, rgba(139, 92, 246, 0.04) 0%, transparent 50%);
-    background-attachment: fixed;
+    @apply bg-[#F8F9FA] text-[#0D0D0D] font-sans antialiased;
   }
 }
 
-/* Custom scrollbars */
+/* Custom minimal scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #080A0F;
+  background: #F8F9FA;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1E2638;
+  background: #D1D5DB;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #2D374D;
+  background: #9CA3AF;
 }
 
-/* Glassmorphism surfaces */
-.glass-panel {
-  background: rgba(15, 19, 29, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+/* Havas Editorial Card */
+.havas-card {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  transition: all 0.2s ease-in-out;
 }
 
-.glass-panel-hover {
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+.havas-card:hover {
+  border-color: #9CA3AF;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
 }
 
-.glass-panel-hover:hover {
-  background: rgba(22, 28, 43, 0.85);
-  border-color: rgba(255, 255, 255, 0.14);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5);
-}
-
-.glow-orange {
-  box-shadow: 0 0 35px -5px rgba(255, 92, 0, 0.2);
-}
-
-.glow-cyan {
-  box-shadow: 0 0 35px -5px rgba(0, 210, 255, 0.2);
-}
-
-.glow-purple {
-  box-shadow: 0 0 35px -5px rgba(139, 92, 246, 0.2);
-}
-
-.glow-green {
-  box-shadow: 0 0 35px -5px rgba(16, 185, 129, 0.2);
-}
-
-.gradient-border {
-  position: relative;
-  background-clip: padding-box;
-}
-
-.gradient-border::before {
-  content: '';
-  position: absolute;
-  top: 0; right: 0; bottom: 0; left: 0;
-  z-index: -1;
-  margin: -1px;
-  border-radius: inherit;
-  background: linear-gradient(135deg, rgba(255,92,0,0.4), rgba(0,210,255,0.2), rgba(139,92,246,0.3));
+.havas-tag {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.6875rem; /* 11px */
 }

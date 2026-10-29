@@ -11,13 +11,6 @@ export type MaturityStatus =
   | 'Enterprise POC' 
   | 'Strategic Architecture';
 
-export interface SolutionMetric {
-  label: string;
-  value: string;
-  change?: string;
-  detail?: string;
-}
-
 export interface ArchitectureNode {
   step: string;
   name: string;
@@ -25,10 +18,19 @@ export interface ArchitectureNode {
   tech: string;
 }
 
+export interface SolutionMetric {
+  label: string;
+  value: string;
+  change?: string;
+  detail?: string;
+}
+
 export interface AISolution {
   id: string;
   title: string;
   tagline: string;
+  coreConcept: string;
+  useCases: string[];
   pillar: PillarType;
   maturity: MaturityStatus;
   clientContext: {
@@ -44,7 +46,7 @@ export interface AISolution {
     nodes: ArchitectureNode[];
   };
   techStack: string[];
-  metrics: SolutionMetric[];
+  metrics?: SolutionMetric[];
   deliverables: string[];
   internalDeepDive?: {
     repoName?: string;
@@ -60,12 +62,7 @@ export interface PillarMetadata {
   id: PillarType;
   title: string;
   shortTitle: string;
+  sectionTag: string;
   tagline: string;
-  color: string;
-  badgeBg: string;
-  badgeBorder: string;
-  glowClass: string;
-  accentHex: string;
-  iconName: string;
   summary: string;
 }
