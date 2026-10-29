@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, RefreshCw, Terminal, Shield, Check, Copy, Send, Sparkles } from 'lucide-react';
+import { X, RefreshCw, Terminal, Shield, Check, Copy, Send, Sparkles, Eye, EyeOff } from 'lucide-react';
 import { AISolution } from '../types';
 
 interface SyncModalProps {
@@ -14,7 +14,8 @@ export const SyncModal: React.FC<SyncModalProps> = ({
   onSolutionAdded
 }) => {
   const [activeTab, setActiveTab] = useState<'cli' | 'form'>('cli');
-  const [authToken, setAuthToken] = useState('csa_team_sec_2026_x89');
+  const [authToken, setAuthToken] = useState('');
+  const [showToken, setShowToken] = useState(false);
   const [copiedCmd, setCopiedCmd] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitResult, setSubmitResult] = useState<{ success: boolean; message: string } | null>(null);
@@ -34,7 +35,7 @@ export const SyncModal: React.FC<SyncModalProps> = ({
   if (!isOpen) return null;
 
   const cliSnippet = `# 1. Export your authorized team token (in ~/.zshrc or terminal):
-export CSA_CATALOG_TOKEN="${authToken}"
+export CSA_CATALOG_TOKEN="${authToken || '<YOUR_CSA_CATALOG_TOKEN>'}"
 
 # 2. In any project repository, run the scan & sync script:
 python3 scripts/scan_and_sync.py --scan --sync
@@ -50,6 +51,10 @@ python3 scripts/scan_and_sync.py --scan --sync
 
   const handleManualSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!authToken.trim()) {
+      setSubmitResult({ success: false, message: 'Please enter your authorized CSA_CATALOG_TOKEN in the authorization field.' });
+      return;
+    }
     setIsSubmitting(true);
     setSubmitResult(null);
 
@@ -185,21 +190,33 @@ python3 scripts/scan_and_sync.py --scan --sync
             </div>
           </div>
 
+          {/* Team Secret Input (Used by both CLI and Form submission) */}
+          <div>
+            <label className="block text-xs font-bold uppercase tracking-wider text-slate mb-1.5">
+              Your Team Authorization Secret (CSA_CATALOG_TOKEN)
+            </label>
+            <div className="relative">
+              <input
+                type={showToken ? 'text' : 'password'}
+                value={authToken}
+                onChange={(e) => setAuthToken(e.target.value)}
+                placeholder="Enter authorized CSA_CATALOG_TOKEN"
+                className="w-full px-3 py-2 bg-paper border border-line rounded-btn text-xs font-mono text-fg focus:outline-none focus:border-fg pr-10"
+              />
+              <button
+                type="button"
+                tabIndex={-1}
+                onClick={() => setShowToken(!showToken)}
+                className="absolute right-2.5 top-2 text-mist hover:text-slate transition-colors p-0.5"
+                aria-label={showToken ? 'Hide token' : 'Show token'}
+              >
+                {showToken ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+              </button>
+            </div>
+          </div>
+
           {activeTab === 'cli' ? (
             <div className="space-y-4">
-              <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-slate mb-1.5">
-                  Your Team Authorization Secret
-                </label>
-                <div className="relative">
-                  <input
-                    type="text"
-                    value={authToken}
-                    onChange={(e) => setAuthToken(e.target.value)}
-                    className="w-full px-3 py-2 bg-paper border border-line rounded-btn text-xs font-mono text-fg focus:outline-none focus:border-fg"
-                  />
-                </div>
-              </div>
 
               <div>
                 <div className="flex items-center justify-between mb-1.5">

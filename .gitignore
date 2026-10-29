@@ -22,3 +22,8 @@ abhimanyu_deck_extracted.txt
 *.pptx
 *.pptm
 
+# Local tooling & previews
+.claude/
+graphify-out/
+
+

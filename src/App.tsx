@@ -7,11 +7,19 @@ import { SolutionCard } from './components/SolutionCard';
 import { SolutionModal } from './components/SolutionModal';
 import { SyncModal } from './components/SyncModal';
 import { UnlockModal } from './components/UnlockModal';
+import { LoginGate } from './components/LoginGate';
 import { Footer } from './components/Footer';
 import { SectionDivider } from './components/SectionDivider';
 import { Reveal, SectionHead, PILLAR_ICONS, PILLAR_ORDER } from './components/ui';
 import { PILLARS } from './data/pillars';
 import { AlertCircle, ArrowRight } from 'lucide-react';
+import {
+  AuthRole,
+  AuthSession,
+  getAuthSession,
+  saveAuthSession,
+  destroyAuthSession,
+} from './lib/auth';
 
 type Theme = 'light' | 'dark';
 
@@ -26,6 +34,8 @@ const readStoredTheme = (): Theme => {
 };
 
 export default function App() {
+  const [session, setSession] = useState<AuthSession | null>(() => getAuthSession());
+
   const [solutions, setSolutions] = useState<AISolution[]>(() => {
     const saved = localStorage.getItem('csa_solutions_catalog_v2');
     if (saved) {
@@ -40,6 +50,8 @@ export default function App() {
   });
 
   const [internalMode, setInternalMode] = useState<boolean>(() => {
+    const s = getAuthSession();
+    if (s?.role === 'internal') return true;
     return localStorage.getItem('csa_internal_unlocked') === 'true';
   });
 
@@ -95,6 +107,12 @@ export default function App() {
   const handleUnlockSuccess = () => {
     setInternalMode(true);
     localStorage.setItem('csa_internal_unlocked', 'true');
+  };
+
+  const handleSignOut = () => {
+    destroyAuthSession();
+    setSession(null);
+    setInternalMode(false);
   };
 
   // Handler for dynamically adding / syncing a solution
@@ -166,6 +184,23 @@ export default function App() {
     setSelectedMaturity('all');
   };
 
+  if (!session) {
+    return (
+      <LoginGate
+        theme={theme}
+        onToggleTheme={toggleTheme}
+        onAuthenticated={(role, rememberMe) => {
+          saveAuthSession(role, rememberMe);
+          setSession({ authenticated: true, role, timestamp: Date.now() });
+          if (role === 'internal') {
+            setInternalMode(true);
+            localStorage.setItem('csa_internal_unlocked', 'true');
+          }
+        }}
+      />
+    );
+  }
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header
@@ -175,6 +210,7 @@ export default function App() {
         totalSolutions={solutions.length}
         theme={theme}
         onToggleTheme={toggleTheme}
+        onSignOut={handleSignOut}
       />
 
       <Hero

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Lock, Unlock, RefreshCw, Moon, Sun } from 'lucide-react';
+import { Lock, Unlock, RefreshCw, Moon, Sun, LogOut } from 'lucide-react';
 import { PivotRootsLogo } from './ui';
 
 interface HeaderProps {
@@ -9,6 +9,7 @@ interface HeaderProps {
   totalSolutions: number;
   theme: 'light' | 'dark';
   onToggleTheme: () => void;
+  onSignOut: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -17,6 +18,7 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenSyncModal,
   theme,
   onToggleTheme,
+  onSignOut,
 }) => {
   return (
     <header className="sticky top-0 z-40 w-full bg-ink border-b border-white/10">
@@ -66,6 +68,15 @@ export const Header: React.FC<HeaderProps> = ({
             aria-label="Toggle colour theme"
           >
             {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+          </button>
+
+          <button
+            onClick={onSignOut}
+            className="p-2 rounded-btn border border-white/25 text-white/80 hover:text-white hover:border-white/60 transition-colors"
+            title="Lock Hub / Sign Out"
+            aria-label="Sign out and lock hub"
+          >
+            <LogOut className="w-4 h-4" />
           </button>
 
           <a

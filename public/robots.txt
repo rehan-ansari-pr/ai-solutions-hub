@@ -1,0 +1,3 @@
+# Disallow all indexing to prevent internal proprietary architectures and enterprise solutions from being scraped
+User-agent: *
+Disallow: /
