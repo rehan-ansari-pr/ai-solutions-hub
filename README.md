@@ -23,10 +23,22 @@ The portfolio organizes all enterprise solutions into 5 strategic marketing tech
 
 ---
 
-## Dual-Audience Modes
+## Access Control & Cybersecurity Architecture
 
-- **Public Showcase Mode (Client-Safe):** Anonymizes proprietary enterprise client details into clean industry titles (e.g. *"Leading Retail Pharmacy & Health Omni-Channel Chain"* instead of internal brand names), concealing confidential repository paths while demonstrating architectural depth and proven ROI.
-- **Internal Enterprise Mode (Unlocked):** Unlocks unredacted client context (*Chemist Warehouse*, *Tata Steel*, *KFC India*, *IndusInd Bank*, *6thStreet.com*, *DS Group*), local repository directories, agent class names, and compliance specifications using the team passphrase (`csa-internal-2026`).
+The entire platform is protected behind an **Enterprise Access Gate** with defense-in-depth cybersecurity:
+
+1. **Authentication Gate & Dual-Audience Modes:**
+   - **Internal Enterprise Mode (`csa-internal-2026`):** Unlocks unredacted client context (*Chemist Warehouse*, *Tata Steel*, *KFC India*, *IndusInd Bank*, *6thStreet.com*, *DS Group*), local repository directories, agent class names, and compliance specifications.
+   - **Client-Safe Showcase Mode (`csa2026` / `pivotroots` / `csa-showcase-2026`):** Anonymizes proprietary client details into clean industry titles (e.g. *"Leading Retail Pharmacy & Health Omni-Channel Chain"*), concealing confidential repository paths while demonstrating architectural depth and proven ROI.
+2. **Cryptographic Protection (Zero-Plaintext In Bundles):** Passphrases and tokens are verified via Web Crypto SHA-256 digests. No cleartext secrets are stored in compiled JavaScript client bundles.
+3. **Brute-Force & Denial-of-Service Defense:** Login and unlock interfaces enforce progressive rate-limiting with a 30-second lockout timer after 5 consecutive failed attempts.
+4. **Cloudflare Edge Hardening & HTTP Security Headers:**
+   - Strict `Content-Security-Policy`
+   - Anti-Clickjacking (`X-Frame-Options: DENY`)
+   - MIME Sniffing Prevention (`X-Content-Type-Options: nosniff`)
+   - Referrer Policy (`strict-origin-when-cross-origin`)
+   - Crawler Blocking (`robots.txt` + `X-Robots-Tag: noindex, nofollow, noarchive`)
+5. **API Security (`functions/api/solutions.ts`):** Origin-bounded CORS, constant-time token comparison (timing-attack defense), and payload size limits (<64KB).
 
 ---
 
