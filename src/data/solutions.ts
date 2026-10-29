@@ -1,0 +1,691 @@
+import { AISolution } from '../types';
+
+export const INITIAL_SOLUTIONS: AISolution[] = [
+  {
+    id: 'artiscents-flywheel',
+    title: 'Multi-Agent AI Marketing Flywheel',
+    tagline: '37 Cloud Run microservices & 21 autonomous AI agents powering real-time signal-to-delivery marketing with human confidence gates.',
+    pillar: 'orchestration',
+    maturity: 'Production',
+    featured: true,
+    clientContext: {
+      publicName: 'Direct-to-Consumer Luxury Fragrance & Multi-Tenant Retail',
+      internalName: 'Artiscents / Multi-Tenant DTC Flywheel (with Kotak 811, Glanbia, Mazda adaptations)',
+      industry: 'DTC Luxury & Enterprise Retail',
+      region: 'India / APAC'
+    },
+    problem: 'Traditional campaign creation requires 14–21 days of manual coordination across creative brief writing, copy drafts, visual design, legal checks, and channel deployment. In competitive DTC retail, delays result in missed cultural moments, seasonal surges, and competitive counter-moves.',
+    solution: 'Constructed an enterprise GCP-native marketing operating system comprising 37 Cloud Run microservices and 21 specialized AI agents. Built with a vendor-neutral Provider Abstraction Layer (PAL), the flywheel listens for market and inventory signals, performs strategic reasoning, stress-tests ideas with synthetic personas, generates multimodal assets via Imagen 3/Veo 3, and routes borderline assets to an interactive Human-in-the-Loop Gate.',
+    architecture: {
+      summary: 'Signal Ingestion (Pub/Sub) → BigQuery Institutional Memory → 21-Agent Swarm (Vertex AI/ADK) → Synthetic Persona Validation → Multimodal Asset Rendering → Human Gate UI → Automated Omni-Channel Delivery.',
+      nodes: [
+        { step: '01', name: 'Signal Ingestion Layer', description: 'Real-time Pub/Sub streams capturing market triggers, stock levels, competitor pricing, and weather signals', tech: 'Cloud Pub/Sub · Cloud Run' },
+        { step: '02', name: 'Institutional Memory', description: 'BigQuery vector memory storing historical campaign learnings, brand rules, and worked/unworked corpus', tech: 'BigQuery · AlloyDB · Vector Search' },
+        { step: '03', name: '21-Agent Swarm (PAL)', description: 'Specialized swarms: Signal Analyst (A1), Strategist (A2), Brief Writer (A3), Guardian (A4), Persona Simulator (A5), Copy (A6), Visual (A7)', tech: 'Vertex AI · Google ADK · Gemini 1.5 Pro' },
+        { step: '04', name: 'Synthetic Persona Validation', description: 'Simulated consumer panels evaluate resonance, tone of voice, and price resistance in <60 seconds', tech: 'Gemini 2.0 Flash · Persona Models' },
+        { step: '05', name: 'Multimodal Generation', description: 'Autonomous rendering of static images, carousels, and video snippets formatted for all channels', tech: 'Imagen 3 · Veo 3 · Lyria 2 · React UI' },
+        { step: '06', name: 'Human Gate & Dispatch', description: 'Dynamic confidence routing requiring human signoff only for borderline assets before dispatch', tech: 'Next.js UI · Meta CAPI · Gupshup WhatsApp' }
+      ]
+    },
+    techStack: ['GCP Cloud Run', 'BigQuery', 'AlloyDB', 'Google ADK', 'Gemini 1.5 Pro', 'Imagen 3', 'Veo 3', 'Lyria 2', 'React 18', 'FastAPI', 'Terraform'],
+    metrics: [
+      { label: 'Time to Market', value: '< 45 mins', detail: 'Collapsed from 14 days manual cycle' },
+      { label: 'Microservices', value: '37 Services', detail: '14 core + 17 agents + 6 infra services' },
+      { label: 'Autonomous Agents', value: '21 Agents', detail: 'Collaborative multi-agent swarm' },
+      { label: 'Test Suite', value: '65 Passing', detail: 'Rigorous end-to-end integration tests' }
+    ],
+    deliverables: [
+      'GCP Infrastructure-as-Code (Terraform for Cloud Run, Pub/Sub, BigQuery, IAM in asia-south1)',
+      'Provider Abstraction Layer (PAL) preventing direct LLM vendor lock-in',
+      'Dynamic Human-in-the-Loop Review Dashboard with automated confidence routing',
+      'Multi-Tenant Tenant Configuration Engine with isolated brand memory and visual guidelines'
+    ],
+    internalDeepDive: {
+      repoName: 'Artiscents Flywheel',
+      repoPath: '~/Documents/Projects/Artiscents Flywheel',
+      architectureType: 'Decoupled Event-Driven Microservices (37 Cloud Run Services)',
+      keyAgents: ['SignalAnalystAgent', 'CreativeStrategistAgent', 'BrandPlaybookGuardian', 'HumanGateRouter'],
+      compliance: 'Contact frequency fatigue caps, budget burn rate protection, zero PII in model training'
+    }
+  },
+  {
+    id: 'brand-mitra',
+    title: 'Brand Mitra: Agentic Creative Compliance Engine',
+    tagline: 'Dual-layer deterministic CV and multimodal agentic gate ensuring 100% brand playbook adherence with section-level remediation.',
+    pillar: 'creative',
+    maturity: 'Client MVP',
+    featured: true,
+    clientContext: {
+      publicName: 'Global Industrial Conglomerate / Steel & Building Materials Enterprise',
+      internalName: 'Tata Steel Digital AOR / Havas (Tata Steel Aashiyana)',
+      industry: 'Industrial & Building Materials',
+      region: 'India'
+    },
+    problem: 'Multiple creative agencies generate hundreds of digital banners each month. Manual compliance reviews take days, cause campaign launch bottlenecks, and frequently allow off-palette hex colors, improper logo clearances, and weak legal disclosures into live media.',
+    solution: 'Built Brand Mitra, an AI-powered visual and copy compliance engine featuring a two-layer inspection gate. Layer 1 uses deterministic computer vision to check hex colors, logo safe zones, and typography rules in milliseconds with zero LLM costs; Layer 2 uses Google ADK and Gemini 2.0 Flash to evaluate copy tone, aesthetic quality, and playbook alignment, providing clause-specific remediation advice.',
+    architecture: {
+      summary: '2-Layer Gate: Deterministic Computer Vision Hard Rules → Google ADK / Gemini 2.0 Flash Semantic Scorer → Composite Decision Router.',
+      nodes: [
+        { step: '01', name: 'Playbook Rule Extractor', description: 'Digitizes complex multi-page PDF brand guidelines into semantic policy vectors and hard rule constraints', tech: 'PDF Plumber · Vector Store' },
+        { step: '02', name: 'Deterministic CV Gate', description: 'Algorithmic pixel analysis verifying exact hex color palette, logo clear-space margins, and contrast ratios', tech: 'Pillow · OpenCV · NumPy' },
+        { step: '03', name: 'Multimodal Vision Inspector', description: 'Gemini 2.0 Flash evaluates layout balance, visual hierarchy, subject framing, and brand personality', tech: 'Gemini 2.0 Flash Vision' },
+        { step: '04', name: 'Tone of Voice Scorer', description: 'NLP reasoning agent analyzing headline copy, CTA urgency, and statutory warranty claims against tone guides', tech: 'Google ADK · Gemini 1.5 Pro' },
+        { step: '05', name: 'Decision Router & Feedback', description: 'Routes assets to Pass (>=70), Human Review (60–69), or Rework (<60) with clause-level remediation steps', tech: 'FastAPI · SQLite Audit Trail' }
+      ]
+    },
+    techStack: ['Python 3.12', 'FastAPI', 'Google ADK', 'Gemini 2.0 Flash', 'Docker', 'OpenCV', 'Pillow', 'SQLite', 'React'],
+    metrics: [
+      { label: 'Hard-Rule Accuracy', value: '100%', detail: 'Zero false approvals of invalid logos or hex codes' },
+      { label: 'Review Latency', value: '< 5 sec', detail: 'Instant automated pre-flight certification' },
+      { label: 'CTR Improvement', value: '+15%', detail: 'Boosted ad engagement from playbook-aligned creative' },
+      { label: 'Agency Productivity', value: '10x Faster', detail: 'Eliminated multi-day manual review cycles' }
+    ],
+    deliverables: [
+      'Containerized FastAPI microservice with interactive Swagger and visual inspection dashboard',
+      'Dual-Layer Deterministic + LLM Architecture saving token costs on obvious failures',
+      'Meta Ad Library Scraper integration (Apify) pulling competitor and brand ads for benchmark scoring',
+      'Immutable SQLite audit log tracking every revision, score breakdown, and compliance certificate'
+    ],
+    internalDeepDive: {
+      repoName: 'Brand Mitra - Agentic Creative Scoring',
+      repoPath: '~/Documents/Projects/Brand Mitra - Agentic Creative Scoring',
+      architectureType: 'Dual-Layer Deterministic CV + Gemini Multimodal Vision API',
+      keyAgents: ['PlaybookPolicyExtractor', 'DeterministicHardRuleValidator', 'SemanticAestheticScorer'],
+      compliance: 'Strict adherence to Tata Steel brand book specifications and statutory advertising standards'
+    }
+  },
+  {
+    id: 'echo-mmm-studio',
+    title: 'Echo: MMM Automation Studio on Google Meridian',
+    tagline: 'End-to-end Bayesian Marketing Mix Modeling platform powered by Google Meridian, reducing econometric modeling cycles from 12 weeks to < 1 hour.',
+    pillar: 'intelligence',
+    maturity: 'Production',
+    featured: true,
+    clientContext: {
+      publicName: 'Enterprise Multi-Brand Consumer Portfolios',
+      internalName: 'Echo MMM Studio (Demonstrated on Titan Eye+, CoinDCX, Google AI Summit)',
+      industry: 'Enterprise Retail, Fintech & FMCG',
+      region: 'Global / APAC'
+    },
+    problem: 'Traditional econometrics and MMM take 8–16 weeks of senior data scientist effort per cycle, cost upwards of $100K, operate as opaque black boxes, and cannot adapt quickly enough to optimize modern digital and omni-channel media budgets in a privacy-first world.',
+    solution: 'Built Echo, an agentic Marketing Mix Modeling studio powered by Google Meridian 1.6.2 (TensorFlow Probability). Features a guided 10-stage interactive workflow: data profiling, reversible schema repairs, collinearity diagnosis (VIF), Bayesian prior calibration, MCMC model fitting with live SSE streaming, and an embedded Groq (Llama 3.3-70B) copilot with a sub-second simulation fallback.',
+    architecture: {
+      summary: '10-Stage Guided Workflow: Upload → Diagnostic → Repair → EDA → Define Model → Collinearity → Priors → MCMC Run → Optimization & Dashboards.',
+      nodes: [
+        { step: '01', name: 'Raw Media Ingestion', description: 'Uploads raw weekly/daily spend, impressions, GRPs, and sales metrics with auto column role inference', tech: 'Pandas · Parquet' },
+        { step: '02', name: 'Data Doctor & Profiler', description: 'Autonomous agent detecting schema gaps, negative values, and outliers with staged reversible repairs', tech: 'Python · Scikit-Learn' },
+        { step: '03', name: 'Collinearity & VIF Guard', description: 'Calculates Variance Inflation Factors and correlation heatmaps to prevent multicollinearity fit instability', tech: 'NumPy · Seaborn Matrix' },
+        { step: '04', name: 'Bayesian Priors Calibration', description: 'Translates brand historical lift tests and benchmarks into calibrated lognormal ROI priors and decay knots', tech: 'Google Meridian · Bayesian Priors' },
+        { step: '05', name: 'Meridian MCMC Engine', description: 'Fits hierarchical Bayesian model estimating channel adstock, saturation curves, and baseline sales', tech: 'Google Meridian 1.6.2 · TFP' },
+        { step: '06', name: 'Copilot & Scenario Optimizer', description: 'Embedded Groq Llama 3.3-70B copilot providing contextual dataset reasoning and budget reallocations', tech: 'Groq API · Recharts · React 18' }
+      ]
+    },
+    techStack: ['Google Meridian 1.6.2', 'TensorFlow Probability', 'Python 3.11', 'FastAPI', 'React 18', 'TypeScript', 'Groq (Llama 3.3-70B)', 'Cloud Run'],
+    metrics: [
+      { label: 'Modeling Velocity', value: '< 60 mins', detail: 'Slashed from 12 weeks of data science work' },
+      { label: 'Instant Simulation', value: '~2 sec', detail: 'Fast fallback simulator when GPU unavailable' },
+      { label: 'Hosting Cost', value: '$0 Idle', detail: 'Scale-to-zero container deployment on Cloud Run' },
+      { label: 'ROI Optimization', value: '+12% ROAS', detail: 'Validated budget reallocation curve recommendations' }
+    ],
+    deliverables: [
+      'Interactive 10-Stage React 18 Dashboard with human approval gates between workflow stages',
+      'FastAPI Backend orchestrating containerized Google Meridian MCMC runs on Cloud Run',
+      'Nginx reverse-proxy single-origin architecture eliminating CORS vulnerabilities',
+      'Real-time Budget Optimizer with exportable C-suite executive briefings'
+    ],
+    internalDeepDive: {
+      repoName: 'Echo MMM Studio',
+      repoPath: '~/Documents/Projects/Echo MMM Studio',
+      architectureType: 'FastAPI Backend + Dual React Frontends (Client & Admin) + Meridian Engine',
+      keyAgents: ['DataDoctorProfiler', 'MeridianMCMCOrchestrator', 'GroqReasoningCopilot'],
+      compliance: 'Privacy-safe aggregate modeling requiring 0 personal identifiers or third-party cookies'
+    }
+  },
+  {
+    id: '6thstreet-marketing-os',
+    title: '6thStreet: GenAI Marketing OS & Full-Stack Measurement Audit',
+    tagline: 'Remediated 210M fake conversions in GA4/AppsFlyer while deploying an autonomous competitor intelligence-to-campaign reactive engine.',
+    pillar: 'commerce',
+    maturity: 'Client MVP',
+    featured: true,
+    clientContext: {
+      publicName: 'Leading GCC Fast Fashion & Lifestyle E-Commerce Retailer',
+      internalName: '6thStreet.com (Apparel Group, UAE/KSA/Kuwait)',
+      industry: 'Fashion & E-Commerce',
+      region: 'GCC (Middle East)'
+    },
+    problem: '6thStreet faced severe attribution distortion: 210 million fake conversions in 28 days (a 3,594% fake conversion rate) due to browsing events marked as primary conversions in GA4, poisoning Google Ads bidding. Simultaneously, top mobile channels (RTB House with AED 1.13M revenue) had broken cost syncs, while competitors (Namshi, Styli, SIVVI) dominated flash promotions.',
+    solution: 'Executed a comprehensive dual-tier solution: (1) Full-stack measurement remediation untangling GA4 360 and AppsFlyer conversion hierarchies and fixing broken cost APIs; (2) GenAI Marketing OS combining Prism (real-time competitor scraping) and Flywheel (instant on-brand counter-campaign generation) to deploy reactive promotions in under 4 hours.',
+    architecture: {
+      summary: 'Measurement Remediation (GA4 360/AppsFlyer) + Competitor Scraping (Prism) → Prism Signal Bridge → Reactive Campaign Engine (Flywheel).',
+      nodes: [
+        { step: '01', name: 'Measurement Reconciler', description: 'Eliminated 210M micro-browsing events from conversion tagging, protecting Google Ads bidding', tech: 'GA4 360 Admin API · BigQuery' },
+        { step: '02', name: 'Cost Integration Healer', description: 'Fixed broken reporting syncs across ad partners, recovering AED 1.13M in unmeasured revenue', tech: 'AppsFlyer Reporting API' },
+        { step: '03', name: 'Prism Competitor Scraper', description: 'Monitors competitor flash sales, discount depths, and push notifications across Namshi and Styli', tech: 'Playwright · Apify Scrapers' },
+        { step: '04', name: 'Prism Signal Bridge', description: 'Streams competitor discount signals into the Flywheel activation engine in real time', tech: 'FastAPI · Cloud Pub/Sub' },
+        { step: '05', name: 'Bilingual Creative Generator', description: 'Auto-generates localized Arabic and English ad copy and banners compliant with GCC/VAT rules', tech: 'Claude 3.5 Sonnet · Imagen 3' },
+        { step: '06', name: 'Omni-Channel Activation', description: 'Dispatches counter-promotions to MoEngage, Meta Ads, and Google Performance Max', tech: 'MoEngage API · Meta Marketing API' }
+      ]
+    },
+    techStack: ['GA4 360', 'AppsFlyer API', 'BigQuery', 'Playwright', 'Claude 3.5 Sonnet', 'FastAPI', 'React 18', 'Cloud Run'],
+    metrics: [
+      { label: 'Fake Conversions Purged', value: '210M / mo', detail: 'Eliminated bidding algorithm pollution' },
+      { label: 'Unsynced Ad Spend', value: 'AED 1.13M', detail: 'Recovered visibility into RTB House & partner channels' },
+      { label: 'Reaction Velocity', value: '< 4 Hours', detail: 'Slashed from 2 weeks of agency deliberation' },
+      { label: 'Property Scale', value: '1.23M Users', detail: 'Audited across 638M monthly events' }
+    ],
+    deliverables: [
+      'Comprehensive Full-Funnel Attribution Audit Playbook fixing GA4 360 and AppsFlyer discrepancies',
+      'Prism Headless Competitor Intelligence Scraper monitoring rival catalogs and promotions',
+      'Prism-Flywheel Signal Bridge automating reactive marketing trigger creation',
+      'Bilingual Arabic-English Generative Ad Studio with regional GCC compliance checks'
+    ],
+    internalDeepDive: {
+      repoName: '6th Street',
+      repoPath: '~/Documents/Projects/6th Street',
+      architectureType: 'Dual-Engine: Prism (Intelligence) + Flywheel (Activation)',
+      keyAgents: ['CompetitorScraperAgent', 'AttributionSanitizer', 'BilingualCampaignStrategist'],
+      compliance: 'Strict adherence to GCC advertising laws, VAT pricing disclosures, and Ramadan sensitivity'
+    }
+  },
+  {
+    id: 'cwh-sgtm-cdp',
+    title: 'Chemist Warehouse: Server-Side Tracking & First-Party Identity Hub',
+    tagline: 'High-availability Server-Side GTM cluster & The Trade Desk Realtime ID integration achieving 99.4% transaction parity under browser cookie deprecation.',
+    pillar: 'measurement',
+    maturity: 'Production',
+    featured: true,
+    clientContext: {
+      publicName: 'Leading Retail Pharmacy & Health Omni-Channel Chain',
+      internalName: 'Chemist Warehouse Australia (CWH) & Ultra Beauty Replatforming',
+      industry: 'Retail Pharmacy & E-Commerce',
+      region: 'Australia / APAC'
+    },
+    problem: 'Browser cookie restrictions (Safari ITP, Chrome Privacy Sandbox) and client-side ad blockers caused a 30%+ drop in measurable conversions and landing page attribution loss during Black Friday and peak sales events, while third-party audience streams needed to flow into Meiro CDP without client-side latency.',
+    solution: 'Designed and deployed a high-availability Server-Side Google Tag Manager (sGTM) cluster on custom cloud infrastructure. Integrated The Trade Desk First-Party Cookie ID (`ttd_TDID`) directly into the sGTM event bus and Meiro CDP, backed by an interactive analytics validation hub of 25 standalone diagnostic reports protected by Cloudflare Zero Trust OTP.',
+    architecture: {
+      summary: 'Client-Side Tagging → First-Party Domain Proxy → Server-Side GTM Cluster → Trade Desk Identity Resolution → Meiro CDP & BigQuery.',
+      nodes: [
+        { step: '01', name: 'Client-Side Tracking Container', description: 'Lightweight GTM-M86X7T3D container capturing user interactions and first-party cookie IDs', tech: 'Client-Side GTM' },
+        { step: '02', name: 'First-Party Proxy Subdomain', description: 'Routes data through customer domain, extending cookie persistence beyond 7-day Safari ITP caps', tech: 'Cloudflare Workers · DNS' },
+        { step: '03', name: 'Server-Side GTM Cluster', description: 'GTM-5RJVJ89F container cluster processing high-concurrency peak transaction event streams', tech: 'Server-Side GTM · Cloud Run' },
+        { step: '04', name: 'Trade Desk Realtime ID Stream', description: 'Injects First-Party Cookie ID (ttd_TDID) into server events for Meiro CDP audience resolution', tech: 'The Trade Desk API · Meiro CDP' },
+        { step: '05', name: 'Zero-Trust Analytics Hub', description: '25 interactive diagnostic reports monitoring transaction reconciliation, signoffs, and funnel health', tech: 'Cloudflare Access (Zero Trust OTP)' }
+      ]
+    },
+    techStack: ['Server-Side GTM', 'Cloudflare Workers', 'Cloudflare Zero Trust', 'The Trade Desk UID/TDID', 'Google Analytics 4', 'BigQuery', 'Meiro CDP'],
+    metrics: [
+      { label: 'Reconciliation Parity', value: '98.2%–99.4%', detail: 'Client-side vs server-side transaction accuracy' },
+      { label: 'Diagnostic Reports', value: '25 Reports', detail: 'Automated UAT and migration validation dashboards' },
+      { label: 'Security Model', value: 'Zero Trust OTP', detail: 'Protected by Cloudflare Access enterprise domain gating' },
+      { label: 'Attribution Recovery', value: '+24% Lift', detail: 'Recovered previously blocked browser conversions' }
+    ],
+    deliverables: [
+      'Dual-Container GTM Architecture (Client-Side GTM-M86X7T3D + Server-Side GTM-5RJVJ89F)',
+      'The Trade Desk Realtime ID First-Party Cookie tag integration for Meiro CDP resolution',
+      'Cloudflare Worker hosted Analytics Intelligence Hub with automated deployment scripts',
+      'Comprehensive Black Friday Peak Trading UAT signoff validation suites'
+    ],
+    internalDeepDive: {
+      repoName: 'CWH - Master',
+      repoPath: '~/Documents/Projects/CWH - Master',
+      architectureType: 'Cloudflare Worker Hub + Server-Side GTM Infrastructure',
+      keyAgents: ['TransactionReconciler', 'FirstPartyIDStreamer', 'FunnelAuditValidator'],
+      compliance: 'Zero-Trust enterprise authentication restricted to @chemistwarehouse.com.au and agency domains'
+    }
+  },
+  {
+    id: 'nivasa-indic-engine',
+    title: 'Nivāsa Finance: Indic Typography-Safe Generative Engine',
+    tagline: 'Hybrid vernacular ad generator combining Sarvam-M copy, headless Chromium vector typography shaping, and locked compliance disclaimers.',
+    pillar: 'creative',
+    maturity: 'Client MVP',
+    clientContext: {
+      publicName: 'Regulated Affordable Housing Finance Institution',
+      internalName: 'Nivāsa Finance (nivasafinance.com)',
+      industry: 'BFSI / Affordable Housing NBFC',
+      region: 'South India (Karnataka)'
+    },
+    problem: 'Mainstream image diffusion models (FLUX, Midjourney, Stable Diffusion) garble non-Latin Indic scripts, completely corrupting Kannada conjuncts (e.g. ಚತುರ್ಥಿ, ಸಾಲ) and hallucinating illegal loan terms, creating critical regulatory liabilities under RBI guidelines.',
+    solution: 'Architected a hybrid decoupled rendering engine. Copy generation is handled by Sarvam-M (NVIDIA NIM) specialized in Indian languages; typography is rendered through headless Chromium using HarfBuzz vector text shaping directly over HTML/CSS canvases for 100% script accuracy; statutory financial disclosures are hardcoded and locked; and backgrounds are synthesized via FLUX with auto-legibility scrims across 4 simultaneous aspect ratios.',
+    architecture: {
+      summary: 'Prompt Ingestion → Sarvam-M Vernacular Copy → Headless Chromium HarfBuzz Typographic Canvas → Locked Compliance Gate → NVIDIA NIM FLUX Background.',
+      nodes: [
+        { step: '01', name: 'Prompt & Brief Synthesizer', description: 'Deconstructs natural language campaign brief into cultural cues and regional loan value props', tech: 'FastAPI · Pydantic' },
+        { step: '02', name: 'Sarvam-M Vernacular Engine', description: 'Generates authentic colloquial Kannada and English ad copy tailored to affordable home buyers', tech: 'Sarvam AI · NVIDIA NIM' },
+        { step: '03', name: 'HarfBuzz Typographic Shaper', description: 'Headless Chromium renders vector fonts directly to avoid diffusion script corruption', tech: 'Playwright · HarfBuzz · HTML5 Canvas' },
+        { step: '04', name: 'Locked Compliance Gate', description: 'Hardcodes mandatory RBI loan interest rate ranges and license lines, overriding generative drift', tech: 'Deterministic Policy Rules' },
+        { step: '05', name: '4-Ratio Multi-Format Export', description: 'Simultaneously renders 1:1 Feed, 9:16 Story, 16:9 Display, and 4:5 Mobile Grid assets in seconds', tech: 'Playwright Renderer · NVIDIA NIM FLUX' }
+      ]
+    },
+    techStack: ['Python 3.11', 'FastAPI', 'Playwright', 'HarfBuzz Vector Shaping', 'NVIDIA NIM (Sarvam-M, FLUX)', 'Sarvam AI Voice', 'Vapi'],
+    metrics: [
+      { label: 'Script Corruption', value: '0% Errors', detail: '100% Kannada conjunct and matra fidelity' },
+      { label: 'Regulatory Adherence', value: '100% Locked', detail: 'Immutable RBI NBFC mandatory disclosures' },
+      { label: 'Simultaneous Ratios', value: '4 Formats', detail: '1:1, 9:16, 16:9, and 4:5 produced per brief' },
+      { label: 'Voice AI Integration', value: 'Kannada Voice', detail: 'Pilot inbound telephone loan agent with Vapi & Sarvam TTS' }
+    ],
+    deliverables: [
+      'Hybrid Rendering Pipeline pairing generative diffusion backgrounds with vector-shaped typography',
+      'Vernacular Font Shaping Engine guaranteed free of Indic ligature and conjunct distortions',
+      'Batch Creative Generation Server supporting multi-campaign regional asset production',
+      'Interactive Voice Demonstration using Sarvam AI Kannada TTS and Vapi for phone loan inquiries'
+    ],
+    internalDeepDive: {
+      repoName: 'Nivasa Finance',
+      repoPath: '~/Documents/Projects/Nivasa Finance',
+      architectureType: 'Hybrid AI Visual Generation + Headless Chromium Vector Typography',
+      keyAgents: ['VernacularPromptParser', 'HarfBuzzVectorTypesetter', 'LockedComplianceGuardian'],
+      compliance: 'Strict RBI Fair Practices Code for NBFC loan advertising'
+    }
+  },
+  {
+    id: 'tagpilot',
+    title: 'TagPilot (Parallax): Multimodal AI Analytics Implementation & Governance',
+    tagline: 'Multimodal Gemini Vision converting UI screen recordings into production-ready GA4/GTM measurement plans with one-click API deployment.',
+    pillar: 'orchestration',
+    maturity: 'Production',
+    clientContext: {
+      publicName: 'Enterprise Analytics Teams & Digital Agencies',
+      internalName: 'TagPilot / Parallax Platform (Havas CSA & PivotRoots)',
+      industry: 'Enterprise MarTech & Tag Management',
+      region: 'Global / APAC'
+    },
+    problem: 'Drafting Google Analytics 4 (GA4) and Google Tag Manager (GTM) measurement plans from complex web applications takes weeks of manual spreadsheet authoring, selector finding, and tag construction, introducing human errors, broken triggers, and missing e-commerce parameters.',
+    solution: 'Developed TagPilot (Parallax), a multimodal analytics implementation and governance platform. Uses Google Gemini Multimodal Vision to analyze screen recordings of user flows, automatically extract UI interaction hierarchies, compile complete GA4 event dictionaries, verify against compiled YAML rulebooks, and deploy containers via direct Google Tag Manager API batch calls.',
+    architecture: {
+      summary: 'Screen Video / UI Ingestion → Gemini Multimodal Vision Analyzer → YAML Rulebook Verifier → Direct GTM API Container Deployer → Stealth Web Inspector.',
+      nodes: [
+        { step: '01', name: 'Multimodal Video Ingestion', description: 'Uploads screen recording of user navigation; Gemini Multimodal Vision maps checkout journeys', tech: 'Google Gemini Multimodal API' },
+        { step: '02', name: 'Event Schema Extractor', description: 'Two-pass AI analysis automatically generates event names, trigger conditions, and parameter schemas', tech: 'Gemini 1.5 Pro · Pydantic' },
+        { step: '03', name: 'YAML Rulebook Verifier', description: 'Validates measurement specifications against compiled analytics best-practice rulebooks', tech: 'Compiled Knowledge Engine' },
+        { step: '04', name: 'One-Click GTM Deployer', description: 'Batch-creates tags, triggers, and variables directly into target GTM containers via Google APIs', tech: 'Google Tag Manager API' },
+        { step: '05', name: 'Stealth Live Inspector', description: 'Headless Chrome scanner running stealth plugins to audit live sites and intercept dataLayer pushes', tech: 'Puppeteer-Extra Stealth · Node.js' }
+      ]
+    },
+    techStack: ['React 18', 'TypeScript', 'Tailwind CSS', 'Google Gemini Vision', 'Tauri (Rust)', 'Puppeteer Stealth', 'GTM API', 'GA4 Admin API', 'Cloud Run'],
+    metrics: [
+      { label: 'Implementation Velocity', value: '75% Faster', detail: 'From weeks of spreadsheet drafting to automated plan' },
+      { label: 'Container Deployment', value: '1-Click API', detail: 'Zero manual GTM tag and trigger creation' },
+      { label: 'Inspection Speed', value: '< 30 sec', detail: 'Live web page tag and dataLayer beacon audits' },
+      { label: 'App Delivery', value: 'Web & Desktop', detail: 'Responsive cloud web app + native Tauri desktop client' }
+    ],
+    deliverables: [
+      'Multimodal Video-to-Measurement Plan Generator converting MP4 walkthroughs into GA4 event plans',
+      'Compiled YAML Knowledge Base engine evaluating container hygiene against enterprise standards',
+      'One-Click Google Tag Manager Container Deployment via OAuth2 and GTM Admin APIs',
+      'Stealth Headless Chrome Inspector intercepting live dataLayer events on production sites'
+    ],
+    internalDeepDive: {
+      repoName: 'TagPilot',
+      repoPath: '~/Documents/Projects/TagPilot',
+      architectureType: 'React 18 + Tauri (Rust) Desktop + Cloud Run API Backend',
+      keyAgents: ['VideoJourneyExtractor', 'RulebookComplianceEvaluator', 'GTMContainerDeployer'],
+      compliance: 'Strict GA4 naming convention validation, PII redaction checks, automated GTM backup snapshots'
+    }
+  },
+  {
+    id: 'appsflyer-audit',
+    title: 'AppsFlyer Autonomous Attribution Fraud & Health Auditor',
+    tagline: 'Zero-token headless browser engine auditing MMP accounts for attribution fraud, broken cost syncs, and Protect360 gaps with zero API keys.',
+    pillar: 'measurement',
+    maturity: 'Production',
+    clientContext: {
+      publicName: 'Mobile App Growth Teams & Enterprise App Advertisers',
+      internalName: 'AppsFlyer Audit CLI / Antigravity Skill',
+      industry: 'Mobile Marketing & Performance AdTech',
+      region: 'Global'
+    },
+    problem: 'Growth teams invest millions in mobile user acquisition but lose budget to ad fraud (click flooding, install hijacking) and broken partner cost integrations. Outside auditors and consultants can rarely obtain admin access or API tokens to perform forensic reviews due to corporate security hurdles.',
+    solution: 'Engineered an autonomous CLI agent and Antigravity skill that requires only standard user dashboard credentials saved in the OS Keychain. The engine spins up a headless Chromium session, extracts active app configurations, executes deterministic forensic checks against a versioned YAML rulebook (AF-1.1 to AF-4.1), and exports executive-ready Markdown and HTML audit reports.',
+    architecture: {
+      summary: 'Keychain Credentials Retrieval → Headless Chromium Session Orchestrator → Multi-App Discovery → Deterministic YAML Rulebook Engine → Markdown/HTML Exporter.',
+      nodes: [
+        { step: '01', name: 'Keychain Auth Orchestrator', description: 'Interactive TTY-only onboarding storing credentials safely into macOS Keychain with zero CLI arg leakage', tech: 'Node.js · macOS Keychain' },
+        { step: '02', name: 'Session Token Harvester', description: 'Automates dashboard login, extracts af_jwt and auth_tkt cookies, and queries internal APIs', tech: 'Puppeteer · Headless Chrome' },
+        { step: '03', name: 'Multi-Account Discovery', description: 'Lists all reachable advertiser accounts, app bundles, and operating systems under the login', tech: 'Internal AppsFlyer Endpoints' },
+        { step: '04', name: 'YAML Forensic Rulebook', description: 'Evaluates AF-1.1 (Protect360 licenses), AF-2.1 (cost health), AF-3.1 (attribution hygiene), AF-4.1 (revenue deduplication)', tech: 'YAML Rule Engine' },
+        { step: '05', name: 'Executive Report Compiler', description: 'Generates prioritized markdown and HTML forensic audit reports highlighting financial leakage', tech: 'Markdown · HTML Templates' }
+      ]
+    },
+    techStack: ['Node.js 20+', 'Puppeteer', 'Chrome DevTools Protocol', 'macOS Keychain API', 'YAML Rules Engine', 'Antigravity Skill Protocol'],
+    metrics: [
+      { label: 'API Keys Required', value: 'Zero Tokens', detail: 'Runs completely on standard dashboard login' },
+      { label: 'Unmeasured Revenue Found', value: 'AED 1.13M', detail: 'Identified on single partner with broken cost sync' },
+      { label: 'Audit Execution Time', value: '< 90 sec', detail: 'Complete multi-account forensic sweep' },
+      { label: 'Security Model', value: 'Keychain Backed', detail: 'Zero plaintext passwords in scripts or shell history' }
+    ],
+    deliverables: [
+      'Self-contained Node.js CLI tool with interactive secure credential onboarding',
+      'Antigravity Agent Skill enabling coding agents to trigger mobile attribution audits autonomously',
+      'Versioned YAML Forensic Rulebook (AF-1.1 to AF-4.1) scoring account health',
+      'Actionable Forensic Audit Reports highlighting unmeasured spend and inactive fraud licenses'
+    ],
+    internalDeepDive: {
+      repoName: 'appsflyer-audit',
+      repoPath: '~/Documents/Projects/appsflyer-audit',
+      architectureType: 'Headless Browser Automation CLI + Claude/Antigravity Agent Skill',
+      keyAgents: ['SessionTokenHarvester', 'DeterministicRuleEvaluator', 'ForensicReportCompiler'],
+      compliance: 'Strict local password isolation; zero external transmission of user credentials'
+    }
+  },
+  {
+    id: 'kfc-genai-optimization',
+    title: 'KFC: Multi-Agentic GenAI Campaign Optimization Engine',
+    tagline: 'BigQuery marketing data lake paired with LangGraph multi-agent insighting engine delivering +18% retention lift and +20% ROAS improvement.',
+    pillar: 'intelligence',
+    maturity: 'Production',
+    featured: true,
+    clientContext: {
+      publicName: 'Global Quick Service Restaurant (QSR) Brand',
+      internalName: 'KFC India / Yum! Brands Portfolio',
+      industry: 'QSR / Food & Beverage',
+      region: 'India'
+    },
+    problem: 'Managing 100+ concurrent campaigns across acquisition, retention, and food delivery aggregators with manual optimization led to reporting lag, missed peak ordering windows, and diminished overall ROAS.',
+    solution: 'Designed and deployed a unified marketing data lake in Google BigQuery coupled with a multi-agentic insighting engine built on LangGraph. Marketing teams interact with live data via natural language text-to-query, while autonomous agents deliver daily campaign optimization briefings, spend reallocations, and cohort responsiveness triggers.',
+    architecture: {
+      summary: 'Data Lake Ingestion (Airflow) → BigQuery Lake → LangGraph Swarm (Query, Anomaly, Strategy) → Conversational Text-to-SQL → Daily Decision Briefs.',
+      nodes: [
+        { step: '01', name: 'Multi-Channel Ingestion', description: 'Centralized ingestion of paid media APIs, point-of-sale store orders, and food delivery data', tech: 'BigQuery · Cloud Composer' },
+        { step: '02', name: 'LangGraph Multi-Agent Core', description: 'Multi-agent orchestration: Query Planner, SQL Generator, Anomaly Detector, and Strategy Advisor', tech: 'LangGraph · Python' },
+        { step: '03', name: 'Text-to-Query Interface', description: 'Translates natural language questions into dialect-safe BigQuery SQL with partition awareness', tech: 'Gemini 1.5 Pro · SQLGlot' },
+        { step: '04', name: 'Anomaly & Trend Scanner', description: 'Continuously monitors hourly CPA/ROAS across store clusters and flags drop-offs proactively', tech: 'BigQuery ML · Time Series' },
+        { step: '05', name: 'Prescriptive Recommender', description: 'Outputs daily actionable budget shifts toward high-responsiveness customer cohorts', tech: 'LangGraph Synthesizer' }
+      ]
+    },
+    techStack: ['LangGraph', 'Google BigQuery', 'Gemini 1.5 Pro', 'Python', 'Streamlit', 'GCP Cloud Run', 'SQLGlot'],
+    metrics: [
+      { label: 'Retention Lift', value: '+18%', detail: 'Improvement in repeat order frequency' },
+      { label: 'ROAS Lift', value: '+20%', detail: 'Across acquisition and retention campaigns' },
+      { label: 'Manual Reporting', value: '-75%', detail: 'Eliminated daily spreadsheet consolidation' },
+      { label: 'Active Campaigns', value: '100+ Concurrently', detail: 'Monitored across delivery and owned channels' }
+    ],
+    deliverables: [
+      'BigQuery Marketing Data Lake unifying POS, Delivery Aggregator, and Paid Media APIs',
+      'LangGraph Multi-Agent Orchestrator with schema-aware Text-to-SQL capabilities',
+      'Conversational Query Bot deployed for brand managers and performance marketing teams',
+      'Autonomous Daily Optimization Briefing delivered every morning before trading starts'
+    ],
+    internalDeepDive: {
+      repoName: 'KFC GenAI Campaign Engine',
+      repoPath: 'AI solutions deck - abhimanyu.pptx (Slide 3)',
+      architectureType: 'LangGraph Multi-Agent + BigQuery Native Intelligence',
+      keyAgents: ['SQLPlannerAgent', 'CampaignAnomalyAgent', 'BudgetOptimizationAgent'],
+      compliance: 'Aggregated store and cluster analytics; zero raw customer PII processed in LLMs'
+    }
+  },
+  {
+    id: 'indusind-video-vertex',
+    title: 'IndusInd Bank: Dynamic Multi-Format Video Adaptation',
+    tagline: 'Proprietary AI video adaptation pipeline on Vertex AI converting master TVCs into cohort-specific short-form variants within minutes.',
+    pillar: 'creative',
+    maturity: 'Production',
+    featured: true,
+    clientContext: {
+      publicName: 'Premier Indian Private Sector Bank',
+      internalName: 'IndusInd Bank Digital',
+      industry: 'BFSI / Retail Banking',
+      region: 'India'
+    },
+    problem: 'Relying exclusively on a single long-form master TV commercial for digital channels led to severe audience creative fatigue, poor VTR on mobile feeds, and inability to produce platform-fit 9:16 and 1:1 formats at speed.',
+    solution: 'Engineered an automated video adaptation pipeline using Google Vertex AI. The system decomposes master shoots into key visual hooks, writes cohort-targeted voiceover scripts, matches pacing to YouTube Shorts and Demand Gen formats, and renders high-recall variants in minutes.',
+    architecture: {
+      summary: 'Master footage decomposition, automated scene hook classification, script adaptation, and multi-ratio rendering.',
+      nodes: [
+        { step: '01', name: 'Master TVC Ingestion', description: 'Ingests high-resolution master video files and extracts keyframes and audio stems', tech: 'Cloud Storage · FFmpeg' },
+        { step: '02', name: 'Visual Hook Detector', description: 'Vertex AI Vision identifies high-energy scenes, focal subjects, and product appearances', tech: 'Vertex AI Vision · Gemini' },
+        { step: '03', name: 'Cohort Copywriter', description: 'Generates tailored 6s bumper and 15s short scripts tailored to distinct demographic segments', tech: 'Gemini 1.5 Pro' },
+        { step: '04', name: 'Voiceover Synthesis', description: 'Neural text-to-speech generating regional language voiceovers synced to scene transitions', tech: 'Google Cloud TTS' },
+        { step: '05', name: 'Multi-Format Compositor', description: 'Automated cropping and smart reframing for 9:16 vertical, 1:1 square, and 16:9 widescreen', tech: 'FFmpeg · MoviePy · Cloud Run' }
+      ]
+    },
+    techStack: ['Google Cloud Vertex AI', 'Gemini Vision', 'Google Cloud TTS', 'FFmpeg', 'Python', 'Cloud Storage', 'Cloud Run'],
+    metrics: [
+      { label: 'VTR & Engagement', value: '+42%', detail: 'View-Through Rate improvement on YouTube' },
+      { label: 'ROAS Lift', value: '+15%', detail: 'Higher recall on Demand Gen campaigns' },
+      { label: 'Turnaround Time', value: 'Minutes', detail: 'Down from 3 weeks of agency editing' },
+      { label: 'Format Variants', value: '3 Ratios', detail: 'Native 9:16, 1:1, and 16:9 exports' }
+    ],
+    deliverables: [
+      'Automated Video Re-framing Engine with intelligent facial and product centering',
+      'Demographic Script Adapter creating personalized value props for salaried, HNI, and SME cohorts',
+      'Batch Video Rendering Pipeline exporting channel-ready YouTube Shorts & Meta Reels',
+      'Creative Performance Tracker correlating visual hook duration with VTR completion'
+    ],
+    internalDeepDive: {
+      repoName: 'IndusInd Video Vertex Engine',
+      repoPath: 'AI solutions deck - abhimanyu.pptx (Slide 4)',
+      architectureType: 'Cloud-Native Automated Video Synthesis Pipeline',
+      keyAgents: ['KeyframeClassifier', 'VoiceoverSyncer', 'AspectReframer'],
+      compliance: 'RBI statutory disclosure cards automatically hardcoded into closing frames'
+    }
+  },
+  {
+    id: 'ds-mediaflow',
+    title: 'DS Group: Mediaflow Multi-Agent Planning Pipeline',
+    tagline: 'Production-deployed 3-agent AI pipeline automating media plan ingestion, schema validation, and cross-channel intelligence.',
+    pillar: 'orchestration',
+    maturity: 'Production',
+    featured: true,
+    clientContext: {
+      publicName: 'Diversified CPG & Tobacco Conglomerate',
+      internalName: 'DS Group (Rajnigandha, Catch, Pulse, Pass Pass)',
+      industry: 'CPG / FMCG',
+      region: 'India'
+    },
+    problem: 'Multiple media agencies submit media plans across TV, Print, Radio, and Digital using inconsistent Excel templates with broken naming conventions, delaying campaign approvals and blinding brand leaders to overall cross-channel spend distribution.',
+    solution: 'Built Mediaflow, an enterprise 3-agent automated ingestion and intelligence platform. Agent 1 maps arbitrary agency spreadsheets to standard schemas; Agent 2 executes strict row-by-row data validation and blocks corrupt submissions; Agent 3 auto-generates executive intelligence briefs breaking down spend, Free Commercial Time (FCT), and spot distribution.',
+    architecture: {
+      summary: '3-stage agentic pipeline: Field Mapping Agent → Data Validation Agent → Plan Analysis Agent.',
+      nodes: [
+        { step: '01', name: 'Agency Plan Upload', description: 'Secure portal for agency planners to submit raw Excel/CSV media schedules', tech: 'React · Firebase Auth' },
+        { step: '02', name: 'Field Mapping Agent', description: 'AI column recognition across arbitrary templates; maps required/optional fields with confidence scores', tech: 'Vertex AI · Python' },
+        { step: '03', name: 'Data Validation Agent', description: 'Row-by-row validation checking rate cards, date logic, dayparts, and program names', tech: 'Cloud Run · Pydantic' },
+        { step: '04', name: 'Plan Analysis Agent', description: 'Auto-synthesizes spend distribution, FCT ratios, and competitive brand share summaries', tech: 'Gemini 1.5 Pro · Cloud SQL' },
+        { step: '05', name: 'Central Command Center', description: 'Real-time dashboard for brand heads to review, approve, or request revisions on plans', tech: 'React · Tailwind CSS' }
+      ]
+    },
+    techStack: ['React', 'Python', 'Google Cloud Run', 'Cloud SQL / Firestore', 'Firebase Auth', 'Vertex AI', 'FastAPI'],
+    metrics: [
+      { label: 'Manual Effort', value: '-100%', detail: 'Zero manual template data entry' },
+      { label: 'Schema Errors', value: '0 Leaks', detail: '100% required field validation gating' },
+      { label: 'Approval Speed', value: '5x Faster', detail: 'Instant brief and spot distribution generation' },
+      { label: 'Agency Network', value: 'Multi-Agency', detail: 'Standardized across all partner agencies' }
+    ],
+    deliverables: [
+      'Self-Service Agency Portal with instant schema feedback and error highlighting',
+      'Automated Field Mapping Agent matching messy headers with >98% accuracy',
+      'Executive Intelligence Generator creating C-suite TV & Digital plan summaries',
+      'Centralized Cloud SQL Repository unifying historical media investments across brands'
+    ],
+    internalDeepDive: {
+      repoName: 'DS Group Mediaflow',
+      repoPath: 'AI solutions deck - abhimanyu.pptx (Slide 6) & Havas CSA CRM proposals',
+      architectureType: 'Cloud Run Multi-Agent FastAPI + React Microfrontend',
+      keyAgents: ['FieldMappingAgent', 'DataValidationAgent', 'PlanAnalysisAgent'],
+      compliance: 'Strict rate card confidentiality; multi-tenant role-based permissions'
+    }
+  },
+  {
+    id: 'agentic-commerce-ds',
+    title: 'Agentic Commerce & Generative Engine Optimization (GEO)',
+    tagline: 'Model Context Protocol (MCP) servers, JSON-LD schemas, and LLM discovery manifests preparing brands for autonomous AI shopping agents.',
+    pillar: 'commerce',
+    maturity: 'Client MVP',
+    clientContext: {
+      publicName: 'Diversified Consumer Products & Confectionery Group',
+      internalName: 'DS Group Brands (Rajnigandha, Catch Spices, Pulse)',
+      industry: 'CPG / Food & Confectionery',
+      region: 'India / Global'
+    },
+    problem: 'Over 40% of product search is shifting away from traditional search engines toward conversational AI assistants (ChatGPT, Perplexity, Gemini). Traditional SEO does not surface products inside AI shopping answers, leaving brands invisible in agent-driven commerce.',
+    solution: 'Built an enterprise Agentic Commerce architecture. Deployed hosted Model Context Protocol (MCP) endpoints per brand cluster exposing live catalog and inventory, authored Answer Engine Optimization (AEO) structured JSON-LD schemas and `llm.txt` discovery manifests, and connected real-time Google Indexing API webhooks for sub-hour AI visibility.',
+    architecture: {
+      summary: 'Catalog API → Hosted MCP Endpoints → Semantic LLM manifests → AI assistant shopping graph integration.',
+      nodes: [
+        { step: '01', name: 'Product Catalog API', description: 'Centralized REST/GraphQL feeds supplying live stock, pricing, and variant metadata', tech: 'BigQuery · Cloud Run' },
+        { step: '02', name: 'Hosted MCP Server', description: 'Model Context Protocol servers exposing tool calls to Claude, ChatGPT, and Gemini agents', tech: 'MCP Protocol · TypeScript' },
+        { step: '03', name: 'Semantic Discovery (llm.txt)', description: 'Machine-readable semantic brand guides and Schema.org JSON-LD deployed at domain root', tech: 'JSON-LD · llm.txt Standard' },
+        { step: '04', name: 'Instant Indexing Push', description: 'Google Indexing API webhooks indexing new SKUs into Gemini Overviews within hours', tech: 'Google Indexing API' },
+        { step: '05', name: 'Conversational Checkout', description: 'AI shopping bot on WhatsApp and DTC web guiding consumers from recipe queries to checkout', tech: 'WhatsApp Business API · Claude' }
+      ]
+    },
+    techStack: ['Model Context Protocol (MCP)', 'Node.js', 'TypeScript', 'Google Indexing API', 'BigQuery', 'JSON-LD', 'Cloud Run'],
+    metrics: [
+      { label: 'AI Citations', value: '46x Growth', detail: 'Citation rate in Perplexity & ChatGPT responses' },
+      { label: 'Index Latency', value: '< 2 Hours', detail: 'From launch to Google AI Overview eligibility' },
+      { label: 'Discovery Coverage', value: '100% SKUs', detail: 'Mouth fresheners, confectionery & spices' },
+      { label: 'Agent Commerce', value: 'MCP Enabled', detail: 'Direct purchase eligibility via AI tool calls' }
+    ],
+    deliverables: [
+      'Hosted Brand MCP Servers enabling Claude and ChatGPT to query product availability',
+      'Standardized `llm.txt` and Schema.org JSON-LD implementation across portfolio domains',
+      'Google Indexing API Automation Pipeline for instant product launch distribution',
+      'Agent Session Analytics Dashboard tracking brand mentions and citation shares in LLMs'
+    ],
+    internalDeepDive: {
+      repoName: 'Agentic Commerce DS Group',
+      repoPath: 'AI solutions deck - abhimanyu.pptx (Slides 12 & 14)',
+      architectureType: 'MCP Tool Server + Semantic Discovery Engine',
+      keyAgents: ['CatalogMCPProvider', 'SemanticCrawlerBot', 'IndexingWebhookDispatcher'],
+      compliance: 'Verified brand safety policy; strict inventory accuracy guards'
+    }
+  },
+  {
+    id: 'reverse-etl-dpdpa',
+    title: 'Privacy-Safe Reverse ETL & DPDPA Consent Sync Framework',
+    tagline: 'Composable CDP (RudderStack + Multiwoven) audience sync engine with immutable BigQuery consent ledger and automated right-to-erasure.',
+    pillar: 'measurement',
+    maturity: 'Production',
+    clientContext: {
+      publicName: 'Enterprise FMCG & Regulated Consumer Brands',
+      internalName: 'DS Group / Enterprise FMCG Reverse ETL & DPDPA Consent Ledger',
+      industry: 'Enterprise FMCG & Real Estate',
+      region: 'India'
+    },
+    problem: 'Under India’s Digital Personal Data Protection Act (DPDPA), brands face severe penalties if customer consent changes or erasure requests are not propagated to advertising networks (Google Ads, Meta) and marketing automation platforms in real time.',
+    solution: 'Architected a privacy-safe Reverse ETL pipeline built on a Composable CDP stack (RudderStack + Multiwoven). Maintains an immutable BigQuery consent ledger, performs single SHA-256 PII hashing with phone normalization, and synchronizes audiences into Google Ads Customer Match (API v18) and Meta CAPI with automated right-to-be-forgotten erasure triggers.',
+    architecture: {
+      summary: 'Warehouse single customer view → Consent & DPDPA verification → Cryptographic PII hashing → OfflineUserDataJob / CAPI sync.',
+      nodes: [
+        { step: '01', name: 'Warehouse Single Customer View', description: 'Queries verified customer golden records from BigQuery / Snowflake / SAP S4/HANA', tech: 'BigQuery · Snowflake' },
+        { step: '02', name: 'DPDPA Consent Verifier', description: 'Checks purpose-specific customer consent status before selecting records for export', tech: 'Consent Management API' },
+        { step: '03', name: 'Cryptographic Hasher', description: 'Normalizes and hashes phone numbers and emails using SHA-256 with salt protection', tech: 'Ruby / Python Hasher' },
+        { step: '04', name: 'Google Ads Customer Match Sync', description: 'Pushes offline user data jobs via Google Ads API v18 OfflineUserDataJobService', tech: 'Google Ads API v18' },
+        { step: '05', name: 'Meta CAPI & MoEngage Push', description: 'Synchronizes custom audiences and lifecycle event triggers via secure batch APIs', tech: 'Meta Marketing API · MoEngage' },
+        { step: '06', name: 'Right-to-be-Forgotten Engine', description: 'Automates user erasure operations across all destination platforms within 24 hours', tech: 'Erasure Audit Logger' }
+      ]
+    },
+    techStack: ['Python', 'Ruby', 'Google Ads API v18', 'Meta Conversions API', 'BigQuery', 'RudderStack', 'Multiwoven', 'Cloud Run'],
+    metrics: [
+      { label: 'DPDPA Compliance', value: '100% Governed', detail: 'Strict consent verification prior to audience dispatch' },
+      { label: 'Sync Discrepancy', value: '0 Mismatches', detail: 'Verified audience parity across ad platforms' },
+      { label: 'Erasure Latency', value: '< 24 Hours', detail: 'Automated propagation of right-to-be-forgotten requests' },
+      { label: 'Supported Platforms', value: 'Meta, Google, CRM', detail: 'Direct offline job and conversions API connectors' }
+    ],
+    deliverables: [
+      'Production-Ready Reverse ETL Connector Framework with Google Ads Customer Match support',
+      'Automated PII Sanitization & SHA-256 Hashing Utility adhering to ad platform specifications',
+      'DPDPA Compliance Audit Logger tracking every customer record ingress and egress event',
+      'Automated Right-to-be-Forgotten Erasure Webhook synchronizing across all ad accounts'
+    ],
+    internalDeepDive: {
+      repoName: 'Reverse ETL - Custom and DPDPA',
+      repoPath: '~/Documents/Projects/Reverse ETL - Custom and DPDPA',
+      architectureType: 'Multiwoven / Custom Ruby & Python Warehouse Connectors',
+      keyAgents: ['ConsentAuditor', 'AudienceSyncWorker', 'ErasurePropagator'],
+      compliance: 'Strict India DPDPA statutory compliance; zero raw PII stored in sync pipelines'
+    }
+  },
+  {
+    id: 'abm-magic-rockwell',
+    title: 'Rockwell Automation: Closed-Loop B2B Demand Engine',
+    tagline: 'Dynamic ICP scoring and LinkedIn Matched Audiences pipeline using Cohen’s d effect-size analysis to continuously retrain account targeting.',
+    pillar: 'intelligence',
+    maturity: 'Production',
+    clientContext: {
+      publicName: 'Global Industrial Automation & Digital Transformation Leader',
+      internalName: 'Rockwell Automation / Enterprise B2B Demand Engine',
+      industry: 'Industrial Automation & Life Sciences',
+      region: 'APAC / Global'
+    },
+    problem: 'Enterprise B2B manufacturing and automation sales have 6–18 month deal cycles, but marketing teams rely on static, intuition-based target account lists. There is no automated feedback loop measuring which account attributes correlate with actual pipeline progression.',
+    solution: 'Built a closed-loop B2B demand generation engine. Seed accounts are enriched against a 50M+ company database, scored on weighted ICP criteria, tiered into buying personas, and activated on LinkedIn Matched Audiences. As accounts engage, the engine performs Cohen’s d effect-size analysis to statistically identify which firmographics drive lift, automatically retrained ICP weights for the next cycle.',
+    architecture: {
+      summary: 'Seed Account Ingestion → 50M+ Enrichment → Weighted ICP Scoring → LinkedIn Matched Audiences → Engagement Measurement → Cohen’s d Retraining.',
+      nodes: [
+        { step: '01', name: 'Seed Account Ingestion', description: 'Uploads target manufacturing and life sciences enterprise account lists', tech: 'FastAPI · Pydantic' },
+        { step: '02', name: 'Third-Party Firmographic Enrichment', description: 'Enriches headcount, revenue, technology stack, and hiring signals against 50M+ company profiles', tech: 'Enrichment API · PostgreSQL' },
+        { step: '03', name: 'Weighted ICP Scorer', description: 'Calculates multi-dimensional fit score across technical readiness and buying propensity', tech: 'Python · Scikit-Learn' },
+        { step: '04', name: 'LinkedIn Audience Sync', description: 'Automatically creates and updates LinkedIn Matched Audiences segmented by tier and persona', tech: 'LinkedIn Marketing API' },
+        { step: '05', name: 'Effect-Size Retraining Loop', description: 'Calculates Cohen’s d effect size on engaged accounts to statistically recalibrate ICP scoring weights', tech: 'NumPy · Statistical Models' }
+      ]
+    },
+    techStack: ['Python 3.11', 'FastAPI', 'LinkedIn Marketing API', 'PostgreSQL', 'Scikit-Learn', 'React', 'Tailwind CSS'],
+    metrics: [
+      { label: 'Targeting Lift', value: '+34% CTR', detail: 'Lift in LinkedIn ad engagement on retrained ICPs' },
+      { label: 'Test Suite', value: '65 Passing', detail: 'Comprehensive unit tests validating statistical logic' },
+      { label: 'Enrichment Scale', value: '50M+ Profiles', detail: 'Comprehensive global enterprise firmographics' },
+      { label: 'Feedback Loop', value: 'Continuous', detail: 'Weekly statistical recalibration of scoring weights' }
+    ],
+    deliverables: [
+      'Closed-Loop Demand Pipeline connecting CRM seed accounts to live LinkedIn ad targeting',
+      'Dynamic ICP Scoring Model retrained on statistical engagement lift (Cohen’s d)',
+      'Executive Account Engagement Command Center tracking account stage velocity',
+      'Automated Persona-to-Content Mapping Matrix for industrial engineering decision-makers'
+    ],
+    internalDeepDive: {
+      repoName: 'ABM Magic - Rockwell',
+      repoPath: '~/Documents/Projects/ABM Magic - Rockwell',
+      architectureType: 'FastAPI Backend + Closed-Loop LinkedIn Activation Engine',
+      keyAgents: ['FirmographicEnricher', 'ICPWeightOptimizer', 'LinkedInAudienceSynchronizer'],
+      compliance: 'Full GDPR and B2B privacy compliance; enterprise CRM security boundaries'
+    }
+  },
+  {
+    id: 'creative-film-studio',
+    title: 'Creative Film Studio: Self-Hosted Multimodal Production Engine',
+    tagline: 'Self-hosted, unrestricted generative production studio supporting 400+ diffusion models and high-throughput video interpolation.',
+    pillar: 'creative',
+    maturity: 'Production',
+    clientContext: {
+      publicName: 'Creative Video Production & Content Studios',
+      internalName: 'Open Generative AI / Creative Film Studio (MuAPI Engine)',
+      industry: 'Entertainment, Advertising & Generative Media',
+      region: 'Global'
+    },
+    problem: 'Commercial generative AI platforms restrict studios with vendor lock-in, recurring per-seat subscriptions, single-model ecosystems, and arbitrary content censorship, preventing production teams from building unified automated video pipelines.',
+    solution: 'Deployed a self-hosted generative production studio supporting over 400 state-of-the-art open-source and commercial diffusion models. Features the "Nano Banana Pro" image creation studio, canvas history, and the "Cinema" video pipeline supporting frame interpolation, camera motion controls, and aspect ratio adaptation via the MuAPI engine.',
+    architecture: {
+      summary: 'MuAPI High-Throughput Inference Engine → Multi-Studio Interface → Canvas History → Video Frame Interpolator.',
+      nodes: [
+        { step: '01', name: 'MuAPI Model Router', description: 'Routes generative requests across 400+ diffusion checkpoints and vision models', tech: 'MuAPI Router · Docker' },
+        { step: '02', name: 'Nano Banana Pro Canvas', description: 'Real-time prompt engineering, image-to-image variations, and layer compositing canvas', tech: 'React · Tailwind CSS v4' },
+        { step: '03', name: 'Cinema Video Synthesizer', description: 'High-fidelity video generation supporting camera pans, zooms, and cinematic motion', tech: 'Diffusion Video · WebGL' },
+        { step: '04', name: 'Frame Interpolation & Upscale', description: 'Smooths framerate transitions and upscales resolution to 4K delivery standards', tech: 'FFmpeg · RIFE · Real-ESRGAN' },
+        { step: '05', name: 'Asset Management Portal', description: 'Organizes shot lists, prompt recipes, and seeds for collaborative creative teams', tech: 'Next.js · Vite' }
+      ]
+    },
+    techStack: ['Vite', 'Next.js', 'Tailwind CSS v4', 'MuAPI Engine', 'FFmpeg', 'Docker', 'WebGL'],
+    metrics: [
+      { label: 'Supported Models', value: '400+ Models', detail: 'FLUX, Stable Diffusion, SDXL, Midjourney-style LoRAs' },
+      { label: 'Resolution', value: 'Up to 4K', detail: 'Automated super-resolution upscaling' },
+      { label: 'Subscription Cost', value: '$0 Platform Fee', detail: 'Self-hosted infrastructure eliminating recurring seats' },
+      { label: 'Video Pacing', value: '60 FPS', detail: 'High-framerate neural frame interpolation' }
+    ],
+    deliverables: [
+      'Self-Hosted Multi-Studio Web Interface supporting image, video, and audio synthesis',
+      'Cinema Camera Motion Controller generating cinematic panning and tracking shots',
+      'High-Throughput Model Router balancing load across private GPU clusters and cloud APIs',
+      'Interactive Canvas Workbench with full history rollback and layer blending'
+    ],
+    internalDeepDive: {
+      repoName: 'Creative Film Studio',
+      repoPath: '~/Documents/Projects/Creative Film Studio',
+      architectureType: 'Next.js + Vite + MuAPI Inference Engine',
+      keyAgents: ['ModelInferenceRouter', 'CameraMotionSynthesizer', 'FrameInterpolator'],
+      compliance: 'Private enterprise hosting; zero training data sharing with commercial vendors'
+    }
+  }
+];

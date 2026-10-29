@@ -1,0 +1,24 @@
+# Node & Build artifacts
+node_modules/
+dist/
+.wrangler/
+.vite/
+
+# Environment & Secrets
+.env
+.env.local
+*.pem
+*.key
+serviceaccount*.json
+
+# OS & Temp
+.DS_Store
+Thumbs.db
+*.log
+abhimanyu_deck_extracted.txt
+
+# Large binary files & presentations
+*.zip
+*.pptx
+*.pptm
+
