@@ -17,7 +17,7 @@ import urllib.error
 import re
 from pathlib import Path
 
-DEFAULT_ENDPOINT = "https://ai-solutions-hub.pages.dev/api/solutions"
+DEFAULT_ENDPOINT = "https://ai-solutions-hub-922.pages.dev/api/solutions"
 DEFAULT_AUTH_TOKEN = "csa_team_sec_2026_x89"
 
 def extract_project_metadata(project_dir: Path):
