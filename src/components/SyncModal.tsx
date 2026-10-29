@@ -115,23 +115,23 @@ python3 scripts/scan_and_sync.py --scan --sync
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 animate-fadeIn">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-ink/70 flex items-center justify-center p-3 sm:p-6 animate-fadeIn">
       <div 
-        className="relative w-full max-w-2xl bg-white border border-havas-border rounded-xl shadow-2xl overflow-hidden max-h-[92vh] flex flex-col font-sans"
+        className="relative w-full max-w-2xl bg-card border border-line rounded-card overflow-hidden max-h-[92vh] flex flex-col font-sans"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="h-1.5 w-full bg-havas-red" />
+        <div className="h-1.5 w-full bg-lime" />
 
-        <div className="p-6 border-b border-havas-border flex items-center justify-between shrink-0 bg-white">
+        <div className="p-6 border-b border-line flex items-center justify-between shrink-0 bg-card">
           <div className="flex items-center space-x-3">
-            <div className="p-2 rounded-md bg-red-50 text-havas-red">
+            <div className="p-2 bg-lime text-ink rounded-full">
               <RefreshCw className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-xl font-display font-extrabold text-havas-black tracking-tight">
+              <h3 className="text-xl font-display font-bold text-fg tracking-tight">
                 Team Solution Sync &amp; Skill
               </h3>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-slate">
                 Securely register new AI projects or update architectures via coding agents
               </p>
             </div>
@@ -139,20 +139,20 @@ python3 scripts/scan_and_sync.py --scan --sync
 
           <button
             onClick={onClose}
-            className="p-2 rounded-md border border-havas-border text-slate-400 hover:text-black hover:bg-slate-50 transition-colors"
+            className="p-2 rounded-btn border border-line text-mist hover:text-fg hover:bg-paper transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Tab Switcher */}
-        <div className="px-6 pt-4 flex space-x-2 border-b border-havas-border bg-slate-50">
+        <div className="px-6 pt-4 flex space-x-2 border-b border-line bg-paper">
           <button
             onClick={() => setActiveTab('cli')}
             className={`pb-3 text-xs font-bold border-b-2 transition-all flex items-center space-x-1.5 ${
               activeTab === 'cli'
-                ? 'border-havas-red text-havas-red'
-                : 'border-transparent text-slate-500 hover:text-slate-900'
+                ? 'border-lime-deep text-lime-deep'
+                : 'border-transparent text-slate hover:text-fg'
             }`}
           >
             <Terminal className="w-3.5 h-3.5" />
@@ -162,8 +162,8 @@ python3 scripts/scan_and_sync.py --scan --sync
             onClick={() => setActiveTab('form')}
             className={`pb-3 text-xs font-bold border-b-2 transition-all flex items-center space-x-1.5 ${
               activeTab === 'form'
-                ? 'border-havas-red text-havas-red'
-                : 'border-transparent text-slate-500 hover:text-slate-900'
+                ? 'border-lime-deep text-lime-deep'
+                : 'border-transparent text-slate hover:text-fg'
             }`}
           >
             <Send className="w-3.5 h-3.5" />
@@ -172,15 +172,15 @@ python3 scripts/scan_and_sync.py --scan --sync
         </div>
 
         {/* Content Body */}
-        <div className="p-6 overflow-y-auto space-y-6 bg-white">
+        <div className="p-6 overflow-y-auto space-y-6 bg-card">
           
           {/* Security Notice */}
-          <div className="p-4 rounded-md bg-slate-50 border border-slate-200 text-xs text-slate-700 flex items-start space-x-3">
-            <Shield className="w-4 h-4 text-havas-red shrink-0 mt-0.5" />
+          <div className="p-4 rounded-btn bg-paper border border-line text-xs text-fg flex items-start space-x-3">
+            <Shield className="w-4 h-4 text-lime-deep shrink-0 mt-0.5" />
             <div>
-              <span className="font-bold text-slate-900">Authorized Team Security Token:</span>
-              <p className="text-slate-600 mt-0.5 leading-relaxed">
-                Only authenticated team members with the pre-shared secret key (<code className="text-havas-red font-semibold">CSA_CATALOG_TOKEN</code>) can publish or update projects on the live Cloudflare deployment.
+              <span className="font-bold text-fg">Authorized Team Security Token:</span>
+              <p className="text-slate mt-0.5 leading-relaxed">
+                Only authenticated team members with the pre-shared secret key (<code className="text-lime-deep font-semibold">CSA_CATALOG_TOKEN</code>) can publish or update projects on the live Cloudflare deployment.
               </p>
             </div>
           </div>
@@ -188,7 +188,7 @@ python3 scripts/scan_and_sync.py --scan --sync
           {activeTab === 'cli' ? (
             <div className="space-y-4">
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate mb-1.5">
                   Your Team Authorization Secret
                 </label>
                 <div className="relative">
@@ -196,44 +196,44 @@ python3 scripts/scan_and_sync.py --scan --sync
                     type="text"
                     value={authToken}
                     onChange={(e) => setAuthToken(e.target.value)}
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-md text-xs font-mono text-slate-800 focus:outline-none focus:border-havas-red"
+                    className="w-full px-3 py-2 bg-paper border border-line rounded-btn text-xs font-mono text-fg focus:outline-none focus:border-fg"
                   />
                 </div>
               </div>
 
               <div>
                 <div className="flex items-center justify-between mb-1.5">
-                  <label className="text-xs font-bold uppercase tracking-wider text-slate-500">
+                  <label className="text-xs font-bold uppercase tracking-wider text-slate">
                     CLI &amp; Agent Skill Command
                   </label>
                   <button
                     onClick={handleCopyCmd}
-                    className="text-xs text-havas-red hover:underline flex items-center space-x-1 font-semibold"
+                    className="text-xs text-lime-deep hover:underline flex items-center space-x-1 font-semibold"
                   >
                     {copiedCmd ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
                     <span>{copiedCmd ? 'Copied' : 'Copy'}</span>
                   </button>
                 </div>
 
-                <pre className="p-4 rounded-md bg-slate-900 text-slate-100 text-xs font-mono overflow-x-auto leading-relaxed">
+                <pre className="p-4 rounded-btn bg-ink text-white text-xs font-mono overflow-x-auto leading-relaxed">
                   {cliSnippet}
                 </pre>
               </div>
 
-              <div className="p-4 rounded-md bg-slate-50 border border-slate-200 space-y-2">
-                <div className="text-xs font-bold text-slate-900 flex items-center space-x-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-havas-red" />
+              <div className="p-4 rounded-btn bg-paper border border-line space-y-2">
+                <div className="text-xs font-bold text-fg flex items-center space-x-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-lime-deep" />
                   <span>How the Agentic Scanner Works:</span>
                 </div>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  When you run <code className="font-mono text-slate-800">/sync-solution</code> in any project directory, the agent inspects your <code className="font-mono text-slate-800">README.md</code>, requirements, architecture docs, and Git history. It synthesizes the problem, technical stack, core concept, and use cases into an authorized payload and delivers it directly to <code className="font-mono text-slate-800">POST /api/solutions</code>.
+                <p className="text-xs text-slate leading-relaxed">
+                  When you run <code className="font-mono text-fg">/sync-solution</code> in any project directory, the agent inspects your <code className="font-mono text-fg">README.md</code>, requirements, architecture docs, and Git history. It synthesizes the problem, technical stack, core concept, and use cases into an authorized payload and delivers it directly to <code className="font-mono text-fg">POST /api/solutions</code>.
                 </p>
               </div>
             </div>
           ) : (
             <form onSubmit={handleManualSubmit} className="space-y-4">
               {submitResult && (
-                <div className={`p-3 rounded-md border text-xs ${
+                <div className={`p-3 rounded-btn border text-xs ${
                   submitResult.success 
                     ? 'bg-emerald-50 text-emerald-800 border-emerald-200' 
                     : 'bg-red-50 text-red-800 border-red-200'
@@ -244,22 +244,22 @@ python3 scripts/scan_and_sync.py --scan --sync
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">Solution Title *</label>
+                  <label className="block text-xs font-bold text-fg mb-1">Solution Title *</label>
                   <input
                     type="text"
                     required
                     value={formTitle}
                     onChange={(e) => setFormTitle(e.target.value)}
                     placeholder="e.g. Mediaflow Plan Ingestion"
-                    className="w-full px-3 py-2 border border-slate-300 rounded-md text-xs text-slate-900 focus:outline-none focus:border-havas-red"
+                    className="w-full px-3 py-2 border border-line rounded-btn text-xs text-fg focus:outline-none focus:border-fg"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">Strategic Pillar *</label>
+                  <label className="block text-xs font-bold text-fg mb-1">Strategic Pillar *</label>
                   <select
                     value={formPillar}
                     onChange={(e) => setFormPillar(e.target.value as any)}
-                    className="w-full px-3 py-2 border border-slate-300 rounded-md text-xs text-slate-900 focus:outline-none focus:border-havas-red"
+                    className="w-full px-3 py-2 border border-line rounded-btn text-xs text-fg focus:outline-none focus:border-fg"
                   >
                     <option value="orchestration">Orchestration &amp; Workflow Automation</option>
                     <option value="intelligence">Decision Intelligence &amp; Agents</option>
@@ -271,97 +271,97 @@ python3 scripts/scan_and_sync.py --scan --sync
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">Tagline *</label>
+                <label className="block text-xs font-bold text-fg mb-1">Tagline *</label>
                 <input
                   type="text"
                   required
                   value={formTagline}
                   onChange={(e) => setFormTagline(e.target.value)}
                   placeholder="One-line summary of capability"
-                  className="w-full px-3 py-2 border border-slate-300 rounded-md text-xs text-slate-900 focus:outline-none focus:border-havas-red"
+                  className="w-full px-3 py-2 border border-line rounded-btn text-xs text-fg focus:outline-none focus:border-fg"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">The Core Concept *</label>
+                <label className="block text-xs font-bold text-fg mb-1">The Core Concept *</label>
                 <textarea
                   required
                   rows={2}
                   value={formConcept}
                   onChange={(e) => setFormConcept(e.target.value)}
                   placeholder="Explain the underlying architectural concept..."
-                  className="w-full px-3 py-2 border border-slate-300 rounded-md text-xs text-slate-900 focus:outline-none focus:border-havas-red resize-none"
+                  className="w-full px-3 py-2 border border-line rounded-btn text-xs text-fg focus:outline-none focus:border-fg resize-none"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">Primary Use Cases (one per line) *</label>
+                <label className="block text-xs font-bold text-fg mb-1">Primary Use Cases (one per line) *</label>
                 <textarea
                   required
                   rows={3}
                   value={formUseCases}
                   onChange={(e) => setFormUseCases(e.target.value)}
                   placeholder="Enter 2-4 concrete business use cases..."
-                  className="w-full px-3 py-2 border border-slate-300 rounded-md text-xs text-slate-900 focus:outline-none focus:border-havas-red resize-none"
+                  className="w-full px-3 py-2 border border-line rounded-btn text-xs text-fg focus:outline-none focus:border-fg resize-none"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">Client (Public Sanitized) *</label>
+                  <label className="block text-xs font-bold text-fg mb-1">Client (Public Sanitized) *</label>
                   <input
                     type="text"
                     required
                     value={formClientPublic}
                     onChange={(e) => setFormClientPublic(e.target.value)}
                     placeholder="e.g. Global Retail Chain"
-                    className="w-full px-3 py-2 border border-slate-300 rounded-md text-xs text-slate-900 focus:outline-none focus:border-havas-red"
+                    className="w-full px-3 py-2 border border-line rounded-btn text-xs text-fg focus:outline-none focus:border-fg"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">Client (Internal Unredacted)</label>
+                  <label className="block text-xs font-bold text-fg mb-1">Client (Internal Unredacted)</label>
                   <input
                     type="text"
                     value={formClientInternal}
                     onChange={(e) => setFormClientInternal(e.target.value)}
                     placeholder="e.g. KFC India / Yum! Brands"
-                    className="w-full px-3 py-2 border border-slate-300 rounded-md text-xs text-slate-900 focus:outline-none focus:border-havas-red"
+                    className="w-full px-3 py-2 border border-line rounded-btn text-xs text-fg focus:outline-none focus:border-fg"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">The Problem *</label>
+                  <label className="block text-xs font-bold text-fg mb-1">The Problem *</label>
                   <textarea
                     required
                     rows={2}
                     value={formProblem}
                     onChange={(e) => setFormProblem(e.target.value)}
                     placeholder="The business friction or bottleneck..."
-                    className="w-full px-3 py-2 border border-slate-300 rounded-md text-xs text-slate-900 focus:outline-none focus:border-havas-red resize-none"
+                    className="w-full px-3 py-2 border border-line rounded-btn text-xs text-fg focus:outline-none focus:border-fg resize-none"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">The Solution *</label>
+                  <label className="block text-xs font-bold text-fg mb-1">The Solution *</label>
                   <textarea
                     required
                     rows={2}
                     value={formSolution}
                     onChange={(e) => setFormSolution(e.target.value)}
                     placeholder="The engineered AI architecture..."
-                    className="w-full px-3 py-2 border border-slate-300 rounded-md text-xs text-slate-900 focus:outline-none focus:border-havas-red resize-none"
+                    className="w-full px-3 py-2 border border-line rounded-btn text-xs text-fg focus:outline-none focus:border-fg resize-none"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">Tech Stack (comma-separated)</label>
+                <label className="block text-xs font-bold text-fg mb-1">Tech Stack (comma-separated)</label>
                 <input
                   type="text"
                   value={formTechStack}
                   onChange={(e) => setFormTechStack(e.target.value)}
-                  className="w-full px-3 py-2 border border-slate-300 rounded-md text-xs text-slate-900 focus:outline-none focus:border-havas-red font-mono"
+                  className="w-full px-3 py-2 border border-line rounded-btn text-xs text-fg focus:outline-none focus:border-fg font-mono"
                 />
               </div>
 
@@ -369,7 +369,7 @@ python3 scripts/scan_and_sync.py --scan --sync
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-2.5 rounded-md bg-havas-red hover:bg-havas-redHover text-white text-xs font-bold transition-colors disabled:opacity-50"
+                  className="w-full py-2.5 rounded-btn bg-lime hover:brightness-95 text-ink text-xs font-bold transition-colors disabled:opacity-50"
                 >
                   {isSubmitting ? 'Authenticating & Registering...' : 'Register Solution into Portfolio'}
                 </button>
@@ -379,13 +379,13 @@ python3 scripts/scan_and_sync.py --scan --sync
 
         </div>
 
-        <div className="p-4 px-6 bg-slate-50 border-t border-havas-border flex items-center justify-between shrink-0">
-          <span className="text-xs text-slate-400 font-mono">
-            Endpoint: <span className="text-slate-600">POST /api/solutions</span>
+        <div className="p-4 px-6 bg-paper border-t border-line flex items-center justify-between shrink-0">
+          <span className="text-xs text-mist font-mono">
+            Endpoint: <span className="text-slate">POST /api/solutions</span>
           </span>
           <button
             onClick={onClose}
-            className="px-4 py-1.5 rounded-md border border-havas-border text-xs font-semibold text-slate-700 hover:bg-white transition-colors"
+            className="px-4 py-1.5 rounded-btn border border-line text-xs font-semibold text-fg hover:bg-card transition-colors"
           >
             Close
           </button>

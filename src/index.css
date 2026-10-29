@@ -2,46 +2,182 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  body {
-    @apply bg-[#F8F9FA] text-[#0D0D0D] font-sans antialiased;
+/* Colour tokens as RGB channels so Tailwind opacity modifiers work.
+   Values come from the PivotRoots and Havas deck templates. See DESIGN_PROMPT.md. */
+:root {
+  --ink: 30 43 48;            /* #1E2B30 */
+  --ink-2: 58 74 80;          /* #3A4A50 */
+  --slate: 94 106 110;        /* #5E6A6E */
+  --mist: 174 185 188;        /* #AEB9BC */
+  --line: 214 219 220;        /* #D6DBDC */
+  --line-soft: 226 230 230;   /* #E2E6E6 */
+  --paper: 247 248 248;       /* #F7F8F8 */
+  --card: 255 255 255;
+  --fg: 30 43 48;
+  --lime: 201 218 45;         /* #C9DA2D */
+  --lime-deep: 95 110 5;      /* #5F6E05 */
+  --havas-red: 229 2 0;       /* #E50200 */
+  --havas-red-soft: 251 227 227;
+  --havas-black: 13 13 13;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: 20 29 32;
+    --card: 30 43 48;
+    --ink: 13 20 23;
+    --ink-2: 44 58 63;
+    --fg: 247 248 248;
+    --slate: 174 185 188;
+    --line: 58 74 80;
+    --line-soft: 44 58 63;
+    --lime-deep: 201 218 45;
+    --havas-red-soft: 60 18 18;
+    color-scheme: dark;
   }
 }
 
-/* Custom minimal scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+:root[data-theme="dark"] {
+  --paper: 20 29 32;
+  --card: 30 43 48;
+  --ink: 13 20 23;
+  --ink-2: 44 58 63;
+  --fg: 247 248 248;
+  --slate: 174 185 188;
+  --line: 58 74 80;
+  --line-soft: 44 58 63;
+  --lime-deep: 201 218 45;
+  --havas-red-soft: 60 18 18;
+  color-scheme: dark;
 }
 
-::-webkit-scrollbar-track {
-  background: #F8F9FA;
+@layer base {
+  body {
+    @apply bg-paper text-fg font-sans antialiased text-[15px] sm:text-base leading-relaxed;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display text-fg;
+  }
+  ::selection {
+    @apply bg-lime text-ink;
+  }
 }
 
-::-webkit-scrollbar-thumb {
-  background: #D1D5DB;
-  border-radius: 3px;
+@layer components {
+  .page {
+    @apply max-w-page mx-auto px-4 sm:px-6;
+  }
+  .kicker {
+    @apply font-sans font-semibold uppercase text-[11px] tracking-[0.14em] text-lime-deep;
+  }
+  .kicker-red {
+    @apply font-sans font-semibold uppercase text-[11px] tracking-[0.14em] text-havas-red;
+  }
+  .card {
+    @apply bg-card border border-line rounded-card transition-all duration-200;
+  }
+  .card-hover {
+    @apply hover:border-fg hover:-translate-y-0.5;
+  }
+  .badge {
+    @apply inline-flex items-center justify-center rounded-full bg-lime text-ink shrink-0;
+  }
+  .badge-ink {
+    @apply inline-flex items-center justify-center rounded-full bg-ink text-lime shrink-0;
+  }
+  .chip {
+    @apply inline-flex items-center px-2 py-0.5 rounded-btn bg-line-soft text-slate text-[11px] font-medium;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-btn text-[13px] font-semibold transition-colors;
+  }
+  .btn-primary {
+    @apply btn bg-lime text-ink hover:brightness-95;
+  }
+  .btn-outline-lime {
+    @apply btn border border-lime text-lime hover:bg-lime hover:text-ink;
+  }
+  .btn-outline {
+    @apply btn border border-fg/80 text-fg hover:bg-fg hover:text-paper;
+  }
+  .btn-red {
+    @apply btn bg-havas-red text-white hover:brightness-90;
+  }
+  .num {
+    @apply font-display font-bold tabular-nums;
+  }
+  .live-dot {
+    @apply relative inline-flex w-2 h-2 rounded-full bg-havas-red;
+  }
+  .live-dot::after {
+    content: '';
+    @apply absolute inset-0 rounded-full bg-havas-red animate-ping opacity-60;
+  }
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #9CA3AF;
+/* Texture and visual flair */
+.dot-grid {
+  background-image: radial-gradient(rgb(var(--lime) / 0.18) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+.dot-grid-ink {
+  background-image: radial-gradient(rgb(30 43 48 / 0.35) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+.spotlight::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 50%), rgb(var(--lime) / 0.16), transparent 70%);
+}
+.spotlight:hover::before { opacity: 1; }
+.marquee-track { animation: marquee 60s linear infinite; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+@keyframes float { 0%, 100% { translate: 0 0; } 50% { translate: 0 -8px; } }
+.animate-float { animation: float 6s ease-in-out infinite; }
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.animate-spin-slow { animation: spin-slow 60s linear infinite; }
+
+/* Motion: deck-style builds */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes slide-in-right {
+  from { transform: translateX(100%); }
+  to { transform: none; }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes grow-x {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.reveal { opacity: 0; }
+.reveal.is-in { animation: fade-up 0.5s ease-out both; }
+.animate-panel { animation: slide-in-right 0.5s ease-out both; }
+.animate-drawer { animation: slide-in-right 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+.animate-fadeIn { animation: fade-in 0.2s ease-out both; }
+.animate-grow-x { transform-origin: left; animation: grow-x 0.9s ease-out both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal.is-in, .animate-panel, .animate-drawer, .animate-grow-x {
+    animation: fade-in 0.2s ease-out both;
+    transform: none;
+  }
+  .card-hover:hover { transform: none; }
+  .marquee-track, .animate-float, .animate-spin-slow { animation: none; }
+  .live-dot::after { animation: none; }
 }
 
-/* Havas Editorial Card */
-.havas-card {
-  background: #FFFFFF;
-  border: 1px solid #E5E7EB;
-  transition: all 0.2s ease-in-out;
-}
-
-.havas-card:hover {
-  border-color: #9CA3AF;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
-}
-
-.havas-tag {
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-weight: 700;
-  font-size: 0.6875rem; /* 11px */
-}
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: rgb(var(--paper)); }
+::-webkit-scrollbar-thumb { background: rgb(var(--line)); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgb(var(--mist)); }

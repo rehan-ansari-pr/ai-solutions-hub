@@ -1,7 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AISolution } from '../types';
 import { PILLARS } from '../data/pillars';
-import { X, Layers, CheckCircle2, AlertCircle, Copy, Check, Lock, Unlock, FolderGit2, Cpu } from 'lucide-react';
+import { X, Copy, Check, Lock, Unlock, FolderGit2, Target, Wrench } from 'lucide-react';
+import { PILLAR_ICONS } from './ui';
+import { StatusChip } from './SolutionCard';
+import { StatStrip } from './StatStrip';
+import { ArchitectureDiagram } from './ArchitectureDiagram';
+import { ProcessTimeline } from './ProcessTimeline';
+import { OwnershipPanel } from './OwnershipPanel';
 
 interface SolutionModalProps {
   solution: AISolution | null;
@@ -10,17 +16,43 @@ interface SolutionModalProps {
   onUnlockInternalMode: () => void;
 }
 
-export const SolutionModal: React.FC<SolutionModalProps> = ({
-  solution,
-  internalMode,
-  onClose,
-  onUnlockInternalMode
-}) => {
+const Block: React.FC<{ kicker: string; title?: string; red?: boolean; children: React.ReactNode }> = ({ kicker, title, red, children }) => (
+  <section>
+    <div className={red ? 'kicker-red' : 'kicker'}>{kicker}</div>
+    {title && <h3 className="mt-1.5 mb-4 text-[18px] sm:text-[20px] font-bold leading-snug">{title}</h3>}
+    {!title && <div className="mb-3" />}
+    {children}
+  </section>
+);
+
+/** Splits "Title: body" use-case strings into a timeline card. */
+const toTimelineItem = (s: string) => {
+  const idx = s.indexOf(':');
+  return idx > 0 && idx < 70 ? { title: s.slice(0, idx), body: s.slice(idx + 1).trim() } : { title: s };
+};
+
+export const SolutionModal: React.FC<SolutionModalProps> = ({ solution, internalMode, onClose, onUnlockInternalMode }) => {
   const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (!solution) return;
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
+    window.addEventListener('keydown', onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [solution, onClose]);
 
   if (!solution) return null;
 
   const pillar = PILLARS[solution.pillar] || PILLARS.intelligence;
+  const Icon = PILLAR_ICONS[solution.pillar] || PILLAR_ICONS.intelligence;
+  const stages = solution.architecture.nodes.length;
+  const useCases = solution.useCases ?? [];
+  const maxStat = Math.max(stages, useCases.length, solution.techStack.length, 1);
 
   const handleCopyDetails = () => {
     navigator.clipboard.writeText(JSON.stringify(solution, null, 2));
@@ -29,256 +61,136 @@ export const SolutionModal: React.FC<SolutionModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 animate-fadeIn">
-      <div 
-        className="relative w-full max-w-4xl bg-white border border-havas-border rounded-xl shadow-2xl overflow-hidden max-h-[92vh] flex flex-col font-sans"
-        onClick={(e) => e.stopPropagation()}
-      >
-        
-        {/* Top Red Accent Bar */}
-        <div className="h-1.5 w-full bg-havas-red shrink-0" />
+    <div className="fixed inset-0 z-50 flex justify-end animate-fadeIn" role="dialog" aria-modal="true" aria-label={solution.title}>
+      <div className="absolute inset-0 bg-ink/70" onClick={onClose} />
 
-        {/* Modal Top Bar - Havas Presentation Header */}
-        <div className="p-6 sm:p-7 border-b border-havas-border flex items-start justify-between shrink-0 bg-white">
-          <div>
-            <div className="flex flex-wrap items-center gap-2 mb-2">
-              <span className="havas-tag text-havas-red">
-                {pillar.sectionTag}
-              </span>
-              <span className="text-slate-300">&bull;</span>
-              <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-                {solution.maturity}
-              </span>
-              <span className="text-slate-300">&bull;</span>
-              <span className="text-xs text-slate-500 font-medium">
-                {solution.clientContext.industry}
-              </span>
+      <div className="relative w-full max-w-[760px] h-full bg-paper overflow-y-auto animate-drawer">
+        {/* Header in slide pattern */}
+        <div className="bg-ink px-5 sm:px-8 pt-6 pb-7">
+          <div className="flex items-start justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <span className="badge w-10 h-10"><Icon className="w-[18px] h-[18px]" strokeWidth={1.75} /></span>
+              <StatusChip maturity={solution.maturity} onDark />
             </div>
-
-            <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-havas-black tracking-tight leading-tight">
-              {solution.title}
-            </h2>
-            <p className="text-sm text-slate-600 mt-1 font-normal leading-relaxed">
-              {solution.tagline}
-            </p>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={handleCopyDetails}
+                className="p-2 rounded-btn border border-white/20 text-mist hover:text-white hover:border-white/50 transition-colors"
+                title="Copy solution JSON"
+              >
+                {copied ? <Check className="w-4 h-4 text-lime" /> : <Copy className="w-4 h-4" />}
+              </button>
+              <button
+                onClick={onClose}
+                className="p-2 rounded-btn border border-white/20 text-mist hover:text-white hover:border-white/50 transition-colors"
+                aria-label="Close"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
           </div>
+          <div className="mt-6 kicker !text-lime">{pillar.title}</div>
+          <h2 className="mt-2 text-[26px] sm:text-[32px] font-bold leading-tight !text-white">{solution.title}</h2>
+          <p className="mt-2 text-mist">{solution.tagline}</p>
 
-          <div className="flex items-center space-x-2 shrink-0 ml-4">
-            <button
-              onClick={handleCopyDetails}
-              className="p-2 rounded-md border border-havas-border text-slate-500 hover:text-havas-black hover:bg-slate-50 transition-colors"
-              title="Copy solution JSON"
-            >
-              {copied ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
-            </button>
-            <button
-              onClick={onClose}
-              className="p-2 rounded-md border border-havas-border text-slate-500 hover:text-havas-black hover:bg-slate-50 transition-colors"
-            >
-              <X className="w-5 h-5" />
-            </button>
+          <div className="mt-5 flex flex-wrap items-center gap-2">
+            {internalMode ? (
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-btn bg-havas-red text-white text-[12px] font-semibold">
+                <Unlock className="w-3.5 h-3.5" />
+                {solution.clientContext.internalName}
+              </span>
+            ) : (
+              <>
+                <span className="chip !bg-white/10 !text-white/85">{solution.clientContext.publicName}</span>
+                <button
+                  onClick={onUnlockInternalMode}
+                  className="inline-flex items-center gap-1 text-[12px] text-mist hover:text-white underline underline-offset-2"
+                >
+                  <Lock className="w-3 h-3" /> Unlock Internal Details
+                </button>
+              </>
+            )}
+            {solution.clientContext.region && <span className="chip !bg-white/10 !text-mist">{solution.clientContext.region}</span>}
           </div>
         </div>
 
-        {/* Modal Scrollable Content Body */}
-        <div className="p-6 sm:p-8 overflow-y-auto space-y-8 bg-[#F8F9FA]">
-          
-          {/* Client Transparency Banner */}
-          <div className="p-4 rounded-lg bg-white border border-havas-border flex items-center justify-between shadow-sm">
-            <div className="flex items-center space-x-3">
-              <div className="p-2 rounded-md bg-slate-100">
-                {internalMode ? <Unlock className="w-4 h-4 text-purple-600" /> : <Lock className="w-4 h-4 text-slate-500" />}
-              </div>
-              <div>
-                <div className="text-[10px] uppercase tracking-wider text-slate-400 font-bold">
-                  {internalMode ? 'Internal Enterprise Client Context' : 'Client-Safe Context'}
-                </div>
-                <div className="text-sm font-bold text-havas-black">
-                  {internalMode ? solution.clientContext.internalName : solution.clientContext.publicName}
-                </div>
-              </div>
-            </div>
+        <div className="px-5 sm:px-8 py-8 space-y-10">
+          <Block kicker="The Underlying Architectural Concept" title={solution.coreConcept || solution.tagline}>
+            <StatStrip
+              stats={[
+                { value: stages, label: 'Architecture stages', ratio: stages / maxStat, tone: 'ink' },
+                { value: useCases.length, label: 'Use cases', ratio: useCases.length / maxStat, tone: 'lime' },
+                { value: solution.techStack.length, label: 'Technology stack', ratio: solution.techStack.length / maxStat, tone: 'mist' },
+              ]}
+            />
+          </Block>
 
-            {!internalMode && (
-              <button
-                onClick={onUnlockInternalMode}
-                className="text-xs font-semibold px-3 py-1.5 rounded-md bg-purple-50 text-purple-700 border border-purple-200 hover:bg-purple-100 transition-colors flex items-center space-x-1"
-              >
-                <Unlock className="w-3.5 h-3.5" />
-                <span>Unlock Internal Details</span>
-              </button>
-            )}
-          </div>
+          <Block kicker={`Technical Design & Architecture (${stages} Stages)`} title={solution.architecture.summary}>
+            <ArchitectureDiagram nodes={solution.architecture.nodes} />
+          </Block>
 
-          {/* Underlying Concept Thesis */}
-          <div className="p-5 rounded-lg bg-white border border-havas-border shadow-sm">
-            <div className="text-xs font-bold uppercase tracking-wider text-havas-red mb-2">
-              The Underlying Architectural Concept
-            </div>
-            <p className="text-sm text-slate-700 leading-relaxed font-medium">
-              {solution.coreConcept || solution.tagline}
-            </p>
-          </div>
-
-          {/* Unlocked Use Cases (Slide 10 Style) */}
-          {solution.useCases && solution.useCases.length > 0 && (
-            <div className="p-6 rounded-lg bg-white border border-havas-border shadow-sm">
-              <div className="text-xs font-bold uppercase tracking-wider text-havas-black mb-4 flex items-center space-x-2">
-                <CheckCircle2 className="w-4 h-4 text-havas-red" />
-                <span>Core Business Use Cases &amp; Workflows Unlocked</span>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {solution.useCases.map((useCase, idx) => (
-                  <div key={idx} className="p-3.5 rounded-md bg-slate-50 border border-slate-200/80">
-                    <div className="text-xs text-slate-700 leading-relaxed">
-                      {useCase}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+          {useCases.length > 0 && (
+            <Block kicker="Core Business Use Cases & Workflows Unlocked">
+              <ProcessTimeline items={useCases.map(toTimelineItem)} />
+            </Block>
           )}
 
-          {/* Problem vs Solution Split */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="p-5 rounded-lg bg-white border border-red-200 shadow-sm">
-              <div className="text-xs font-bold uppercase tracking-wider text-red-700 mb-2 flex items-center space-x-1.5">
-                <AlertCircle className="w-3.5 h-3.5 text-red-600" />
-                <span>The Challenge / Operational Bottleneck</span>
-              </div>
-              <p className="text-xs text-slate-700 leading-relaxed">
-                {solution.problem}
-              </p>
-            </div>
+          <Block kicker="Challenge & Solution">
+            <OwnershipPanel
+              left={{ title: 'The Engineered System Solution', intro: solution.solution, items: solution.deliverables, icon: Wrench }}
+              right={{ title: 'The Challenge / Operational Bottleneck', intro: solution.problem, items: [], icon: Target }}
+            />
+          </Block>
 
-            <div className="p-5 rounded-lg bg-white border border-emerald-200 shadow-sm">
-              <div className="text-xs font-bold uppercase tracking-wider text-emerald-800 mb-2 flex items-center space-x-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                <span>The Engineered System Solution</span>
-              </div>
-              <p className="text-xs text-slate-700 leading-relaxed">
-                {solution.solution}
-              </p>
-            </div>
-          </div>
-
-          {/* End-to-End System Architecture (Slide 4 Style) */}
-          <div className="p-6 rounded-lg bg-white border border-havas-border shadow-sm">
-            <div className="text-xs font-bold uppercase tracking-wider text-havas-black mb-2 flex items-center space-x-2">
-              <Layers className="w-4 h-4 text-havas-red" />
-              <span>Technical Design &amp; Architecture ({solution.architecture.nodes.length} Stages)</span>
-            </div>
-            <p className="text-xs text-slate-500 mb-5 italic">
-              {solution.architecture.summary}
-            </p>
-
-            <div className="space-y-3">
-              {solution.architecture.nodes.map((node, i) => (
-                <div 
-                  key={i}
-                  className="p-4 rounded-md bg-[#F9FAFB] border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
-                >
-                  <div className="flex items-start space-x-3">
-                    <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-slate-200 text-slate-800 shrink-0">
-                      {node.step}
-                    </span>
-                    <div>
-                      <div className="text-sm font-bold text-havas-black">
-                        {node.name}
-                      </div>
-                      <div className="text-xs text-slate-600 mt-0.5 leading-relaxed">
-                        {node.description}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="shrink-0 text-left sm:text-right">
-                    <span className="text-[11px] font-mono px-2 py-1 rounded bg-white text-slate-700 border border-slate-200 inline-block">
-                      {node.tech}
-                    </span>
-                  </div>
-                </div>
+          <Block kicker="Technology & Platform Stack">
+            <div className="flex flex-wrap gap-1.5">
+              {solution.techStack.map((tech) => (
+                <span key={tech} className="chip !text-[12px] !px-2.5 !py-1">{tech}</span>
               ))}
             </div>
-          </div>
+          </Block>
 
-          {/* Tech Stack Chips */}
-          <div className="p-5 rounded-lg bg-white border border-havas-border shadow-sm">
-            <div className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 flex items-center space-x-2">
-              <Cpu className="w-4 h-4 text-slate-600" />
-              <span>Technology &amp; Platform Stack</span>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {solution.techStack.map((tech, i) => (
-                <span
-                  key={i}
-                  className="px-2.5 py-1 rounded bg-slate-100 text-slate-700 border border-slate-200 text-xs font-mono font-medium"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Internal Deep Dive (Unlocked in Internal Mode) */}
           {internalMode && solution.internalDeepDive && (
-            <div className="p-6 rounded-lg bg-purple-50 border border-purple-200 space-y-3">
-              <div className="flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-purple-900">
-                <FolderGit2 className="w-4 h-4 text-purple-700" />
-                <span>Internal Codebase &amp; Architecture Topology</span>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
-                {solution.internalDeepDive.repoPath && (
-                  <div className="p-3 rounded bg-white border border-purple-200">
-                    <div className="text-purple-600 text-[10px] uppercase font-bold">Local Directory</div>
-                    <div className="text-slate-800 font-semibold truncate mt-0.5">{solution.internalDeepDive.repoPath}</div>
-                  </div>
-                )}
-                {solution.internalDeepDive.architectureType && (
-                  <div className="p-3 rounded bg-white border border-purple-200">
-                    <div className="text-purple-600 text-[10px] uppercase font-bold">Topology</div>
-                    <div className="text-slate-800 font-semibold truncate mt-0.5">{solution.internalDeepDive.architectureType}</div>
-                  </div>
-                )}
-              </div>
-
-              {solution.internalDeepDive.keyAgents && solution.internalDeepDive.keyAgents.length > 0 && (
-                <div>
-                  <div className="text-purple-900 text-xs font-medium mb-1.5">Active Agent Classes &amp; Microservices:</div>
+            <Block kicker="Internal Codebase & Architecture Topology" red>
+              <div className="rounded-card border border-havas-red/40 bg-havas-redSoft p-5 space-y-4">
+                <div className="flex items-center gap-2 text-[13px] font-semibold text-fg">
+                  <FolderGit2 className="w-4 h-4 text-havas-red" /> Internal Codebase &amp; Architecture Topology
+                </div>
+                <dl className="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-[12px]">
+                  {solution.internalDeepDive.repoPath && (
+                    <div className="bg-card rounded-btn border border-line p-3 min-w-0">
+                      <dt className="kicker-red !text-[10px]">Local Directory</dt>
+                      <dd className="mt-1 text-fg break-all">{solution.internalDeepDive.repoPath}</dd>
+                    </div>
+                  )}
+                  {solution.internalDeepDive.architectureType && (
+                    <div className="bg-card rounded-btn border border-line p-3 min-w-0">
+                      <dt className="kicker-red !text-[10px]">Topology</dt>
+                      <dd className="mt-1 text-fg">{solution.internalDeepDive.architectureType}</dd>
+                    </div>
+                  )}
+                </dl>
+                {solution.internalDeepDive.keyAgents && solution.internalDeepDive.keyAgents.length > 0 && (
                   <div className="flex flex-wrap gap-1.5">
-                    {solution.internalDeepDive.keyAgents.map((agent, i) => (
-                      <span key={i} className="px-2 py-0.5 rounded bg-white text-purple-800 border border-purple-200 font-mono text-[11px]">
+                    {solution.internalDeepDive.keyAgents.map((agent) => (
+                      <span key={agent} className="px-2 py-0.5 rounded-btn bg-card border border-line font-mono text-[11px] text-fg">
                         {agent}
                       </span>
                     ))}
                   </div>
-                </div>
-              )}
-
-              {solution.internalDeepDive.compliance && (
-                <div className="text-xs text-purple-800 pt-1">
-                  <span className="font-bold">Compliance Notes:</span> {solution.internalDeepDive.compliance}
-                </div>
-              )}
-            </div>
+                )}
+                {solution.internalDeepDive.compliance && (
+                  <p className="text-[13px] text-fg"><span className="font-semibold">Compliance Notes:</span> {solution.internalDeepDive.compliance}</p>
+                )}
+              </div>
+            </Block>
           )}
-
         </div>
 
-        {/* Modal Bottom Bar */}
-        <div className="p-4 px-6 bg-white border-t border-havas-border flex items-center justify-between shrink-0">
-          <div className="text-xs text-slate-400 font-mono">
-            System ID: <span className="text-slate-600">{solution.id}</span>
-          </div>
-          <button
-            onClick={onClose}
-            className="px-4 py-2 rounded-md bg-havas-black hover:bg-slate-800 text-white text-xs font-semibold transition-colors"
-          >
-            Close Details
-          </button>
+        <div className="px-5 sm:px-8 py-3 sticky bottom-0 border-t border-line bg-card flex items-center justify-between text-[11px] text-slate">
+          <span className="font-mono">System ID: <span className="text-fg">{solution.id}</span></span>
+          <button onClick={onClose} className="btn !py-1.5 bg-ink text-white hover:bg-ink-2">Close Details</button>
         </div>
-
       </div>
     </div>
   );
